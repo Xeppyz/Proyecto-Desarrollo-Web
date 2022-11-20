@@ -322,11 +322,11 @@ include("shared/navbar.php");
                         <input type="hidden" value="<?php echo $data_usuario->getIdUsuario(); ?>" name="id_usuario"/>
                     </div>
                     <div class="row mb-3">
-                        <div class="col-sm-10">
+                        <div>
                             <button type="submit" class="btn btn-primary">Eliminar</button>
                             <input type="hidden" name="m" value="eliminarUsuario">
                         </div>
-                        <div class="col-sm-10">
+                        <div>
                             <a href="usuario.php">
                                 <button type="button" class="btn btn-outline-primary">Cancelar</button>
                             </a>

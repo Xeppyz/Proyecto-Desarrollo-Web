@@ -64,7 +64,7 @@ class usuarioController
             $dtu->editarUsuario($tu);
 
 
-            header("Location: agregar_usuario.php");
+            header("Location: editar_usuario.php");
         }
         catch (Exception $e)
         {
@@ -85,7 +85,7 @@ class usuarioController
 
             $dtu->eliminarUsuario($tu);
 
-            header("Location: usuario.php");
+            header("Location: eliminar_usuario.php");
         }
         catch (Exception $e)
         {
