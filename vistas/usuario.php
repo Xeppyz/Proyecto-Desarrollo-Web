@@ -329,8 +329,9 @@ include("shared/navbar.php");
                                             <i class="bi bi-pencil-square" title="Editar Usuario"></i>
                                         </a>
                                         &nbsp;&nbsp;
-                                        <a href="#">
+                                        <a>
                                             <i class="bi bi-trash3" title="Eliminar Usuario"></i>
+                                            <input type="hidden" name="m" value="eliminarUsuario">
                                         </a>
                                     </td>
                                 </tr>

@@ -349,7 +349,6 @@ if(isset($_POST['m'])){
                     </div>
                 </div>
                 <div class="row mb-3">
-                    
                     <div class="col-sm-10">
                         <button type="submit" class="btn btn-primary">Actualizar Usuario</button>
                         <input type="hidden" name="m" value="editarUsuario">
