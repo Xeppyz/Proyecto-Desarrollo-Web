@@ -345,7 +345,7 @@ if(isset($_POST['m'])){
                 <div class="row mb-3">
                     <label class="col-sm-2 col-form-table">Contraseña:</label>
                     <div class="col-sm-10">
-                        <input type="password" name="pwd" class="form-control" />
+                        <input type="password" name="pwd" class="form-control" value="<?php echo $data_usuario->getPwd();?>"/>
                     </div>
                 </div>
                 <div class="row mb-3">
