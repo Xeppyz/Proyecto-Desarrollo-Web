@@ -20,11 +20,10 @@
                     </a>
                 </li>
                 <li>
-                    <a href="agregar_usuario.php">
-                        <i class="bi bi-circle"></i><span>Agregar Usuarios</span>
+                    <a href="#">
+                        <i class="bi bi-circle"></i><span>Roles</span>
                     </a>
                 </li>
-                
             </ul>
         </li><!-- End Components Nav -->
 
