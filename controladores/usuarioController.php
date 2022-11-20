@@ -9,6 +9,7 @@ class usuarioController
     public function __construct(){
         $this->dt_usuario = new dt_tbl_usuario();
     }
+
     public static function guardarUsuario(){
         try
         {
@@ -36,7 +37,7 @@ class usuarioController
         }
     }
 
-    public function editarUsuario()
+    public static function editarUsuario()
     {
         try
         {
@@ -71,7 +72,7 @@ class usuarioController
         }
     }
 
-    public function eliminarUsuario()
+    public static function eliminarUsuario()
     {
         try
         {

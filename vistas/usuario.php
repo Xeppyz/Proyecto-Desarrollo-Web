@@ -7,6 +7,7 @@ $tu = new tbl_usuario();
 $dtu = new dt_tbl_usuario();
 $cu = new usuarioController();
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -329,9 +330,8 @@ include("shared/navbar.php");
                                             <i class="bi bi-pencil-square" title="Editar Usuario"></i>
                                         </a>
                                         &nbsp;&nbsp;
-                                        <a>
+                                        <a href="eliminar_usuario.php?id_usuario=<?php echo $r->getIdUsuario(); ?>">
                                             <i class="bi bi-trash3" title="Eliminar Usuario"></i>
-                                            <input type="hidden" name="m" value="eliminarUsuario">
                                         </a>
                                     </td>
                                 </tr>
