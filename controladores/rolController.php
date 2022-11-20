@@ -13,7 +13,7 @@ class rolController
     public static function guardarRol(){
         try
         {
-            $rol_desc = $_REQUEST['rol_descripcion'];
+            $rol_desc = $_REQUEST['desc'];
 
             $tr = new tbl_rol();
             $dtr = new dt_tbl_rol();
@@ -34,7 +34,7 @@ class rolController
         try
         {
             $id = $_REQUEST['id_rol'];
-            $rol_desc = $_REQUEST['rol_descripcion'];
+            $rol_desc = $_REQUEST['desc'];
 
             $tr = new tbl_rol();
             $dtr = new dt_tbl_rol();

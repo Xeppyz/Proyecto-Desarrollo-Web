@@ -74,11 +74,11 @@ class dt_tbl_rol extends Conexion
     public function editarRol(tbl_rol $tr)
     {
         try {
-            $sql = 'UPDATE tbl_usuario SET rol_descripcion = ? where id_rol = ?';
+            $sql = 'UPDATE tbl_rol SET rol_descripcion = ? where id_rol = ?';
             $query = $this->conectar()->prepare($sql);
             $query->execute(array(
                 $tr->getRolDesc(),
-                $tr->getIdUsuario()
+                $tr->getIdRol()
             ));
         } catch (Exception $e) {
             die($e->getMessage());
