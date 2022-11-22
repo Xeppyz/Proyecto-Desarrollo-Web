@@ -24,6 +24,11 @@
                         <i class="bi bi-circle"></i><span>Roles</span>
                     </a>
                 </li>
+                <li>
+                    <a href="productos.php">
+                        <i class="bi bi-circle"></i><span>Productos</span>
+                    </a>
+                </li>
             </ul>
         </li><!-- End Components Nav -->
 
