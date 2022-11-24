@@ -1,6 +1,6 @@
 <?php
-require_once ('../entidades/tbl_productos.php');
-require_once ('../datos/dt_tbl_productos.php');
+require_once('../entidades/tbl_productos.php');
+require_once('../datos/dt_tbl_productos.php');
 
 class productosController
 {
@@ -11,30 +11,79 @@ class productosController
         $this->dt_productos = new dt_tbl_productos();
     }
 
-    public static function guardarProducto(){
+    public static function guardarProducto()
+    {
         try {
+            $id_comunidad = $_REQUEST['id_comunidad'];
+            $id_cat_producto = $_REQUEST['id_cat_producto'];
             $nombre = $_REQUEST['nombre'];
             $descripcion = $_REQUEST['descripcion'];
             $cantidad = $_REQUEST['cantidad'];
-            $precio_segurido = $_REQUEST['preciov_sugerido'];
+            $preciov_segurido = $_REQUEST['preciov_sugerido'];
             $estado = $_REQUEST['estado'];
-            $data = "'".$nombre."'".$descripcion."'".$cantidad."'".$precio_segurido."'".$estado;
+            $data = "'" . $nombre . "'" . $descripcion . "'" . $cantidad . "'" . $preciov_segurido . "'" . $estado;
 
             $tp = new tbl_productos();
             $dtp = new dt_tbl_productos();
 
-            $tp->setNombres($nombre);
-            $tp->setApellidos($descripcion);
-            $tp->setEmail($cantidad);
-            $tp->setUsuario($precio_segurido);
-            $tp->setPwd($estado);
+            $tp->setIdComunidad($id_comunidad);
+            $tp->setIdCatProducto($id_cat_producto);
+            $tp->setNombre($nombre);
+            $tp->setDescripcion($descripcion);
+            $tp->setCantidad($cantidad);
+            $tp->setPreciovSugerido($preciov_segurido);
+            $tp->setEstado($estado);
 
             $dtp->guardarProducto($tp);
 
-        } catch (Exception $e){
+        } catch (Exception $e) {
             die($e->getMessage());
         }
     }
 
-/*    $insertar = "INSERT INTO tbl_productos VALUES ('')";*/
+    public static function editarProducto()
+    {
+        try {
+            $id = $_REQUEST['id_producto'];
+            $id_comunidad = $_REQUEST['id_comunidad'];
+            $id_cat_producto = $_REQUEST['id_cat_producto'];
+            $nombre = $_REQUEST['nombre'];
+            $descripcion = $_REQUEST['descripcion'];
+            $cantidad = $_REQUEST['cantidad'];
+            $preciov_segurido = $_REQUEST['preciov_sugerido'];
+            $estado = $_REQUEST['estado'];
+            $data = "'" . $id . "'" . $nombre . "'" . $descripcion . "'" . $cantidad . "'" . $preciov_segurido . "'" . $estado;
+
+            $tp = new tbl_productos();
+            $dtp = new dt_tbl_productos();
+
+            $tp->setIdProducto($id);
+            $tp->setIdComunidad($id_comunidad);
+            $tp->setIdCatProducto($id_cat_producto);
+            $tp->setNombre($nombre);
+            $tp->setDescripcion($descripcion);
+            $tp->setCantidad($cantidad);
+            $tp->setPreciovSugerido($preciov_segurido);
+            $tp->setEstado($estado);
+
+            $dtp->editarProducto($tp);
+
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
+    }
+
+    public static function eliminarUsuario()
+    {
+        try {
+            $id = $_REQUEST['id_producto'];
+
+            $dtp = new dt_tbl_productos();
+
+            $dtp->eliminarProducto($id);
+
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
+    }
 }
