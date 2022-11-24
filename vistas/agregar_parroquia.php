@@ -1,21 +1,35 @@
 <?php
-require_once '../entidades/tbl_comunidad.php';
-require_once '../datos/dt_tbl_comunidad.php';
-require_once '../controladores/comunidadController.php';
 
-$tc = new tbl_comunidad();
-$dtc = new dt_tbl_comunidad();
-$cc = new comunidadController();
+require_once '../entidades/tbl_parroquia.php';
+require_once '../datos/dt_tbl_parroquia.php';
+require_once '../controladores/parroquiaControllerr.php';
+
+if(isset($_POST['m'])){
+    $metodo = $_POST['m'];
+    if(method_exists("parroquiaControllerr", $metodo));
+}else{
+
+}
+
+if(isset($_POST['m'])){
+    $metodo = $_POST['m'];
+    if(method_exists("parroquiaControllerr",$metodo))
+    {
+        parroquiaControllerr::{$metodo}();
+    }
+}
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
+
 
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Kermesse - Lista de Comunidades</title>
+    <title>Components / Accordion - NiceAdmin Bootstrap Template</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -25,8 +39,7 @@ $cc = new comunidadController();
 
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
-          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
     <!-- Vendor CSS Files -->
     <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -221,13 +234,13 @@ $cc = new comunidadController();
             <li class="nav-item dropdown pe-3">
 
                 <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                    <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-                    <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
+                    <img src="assets/img/logo2.jpg" alt="Profile" class="rounded-circle">
+                    <span class="d-none d-md-block dropdown-toggle ps-2">Neo Tech</span>
                 </a><!-- End Profile Iamge Icon -->
 
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                     <li class="dropdown-header">
-                        <h6>Kevin Anderson</h6>
+                        <h6>Neo Tech</h6>
                         <span>Web Designer</span>
                     </li>
                     <li>
@@ -235,27 +248,27 @@ $cc = new comunidadController();
                     </li>
 
                     <li>
-                        <!--<a class="dropdown-item d-flex align-items-center" href="users-profile.html">-->
-                        <i class="bi bi-person"></i>
-                        <span>My Profile</span>
-                        <!--</a>-->
+                        <a class="dropdown-item d-flex align-items-center"  href="users-profile.php">
+                            <i class="bi bi-person"></i>
+                            <span>My Profile</span>
+                        </a>
                     </li>
                     <li>
                         <hr class="dropdown-divider">
                     </li>
 
                     <li>
-                        <!-- <a class="dropdown-item d-flex align-items-center" href="users-profile.html">-->
-                        <i class="bi bi-gear"></i>
-                        <span>Account Settings</span>
-                        <!--</a>-->
+                        <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                            <i class="bi bi-gear"></i>
+                            <span>Account Settings</span>
+                        </a>
                     </li>
                     <li>
                         <hr class="dropdown-divider">
                     </li>
 
                     <li>
-                        <a class="dropdown-item d-flex align-items-center" href="">
+                        <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
                             <i class="bi bi-question-circle"></i>
                             <span>Need Help?</span>
                         </a>
@@ -288,12 +301,12 @@ include("shared/navbar.php");
 <main id="main" class="main">
 
     <div class="pagetitle">
-        <h1>Comunidades</h1>
+        <h1>Agregar Parroquia</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">Seguridad</a></li>
-                <li class="breadcrumb-item">Comunidades</li>
-
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item">Pages</li>
+                <li class="breadcrumb-item active">Agregar Parroquia</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -301,50 +314,59 @@ include("shared/navbar.php");
     <section class="section">
         <div class="row">
             <div class="col-lg-12">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Comunidad</h5>
-                        <table class="table comunidadTable">
-                            <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Nombre</th>
-                                <th>Responsable</th>
-                                <th>Descripcion</th>
-                                <th>Acción</th>
-
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <?php
-                            foreach ($dtc->listarParroquia() as $r):
-                                ?>
-                                <tr>
-                                    <td><?php echo $r->getIdComunidad(); ?></td>
-                                    <td><?php echo $r->getNombre(); ?></td>
-                                    <td><?php echo $r->getResponsable(); ?></td>
-                                    <td><?php echo $r->getDescContribucion(); ?></td>
-
-                                    <td>
-                                        <a href="editar_comunidad.php?id_comunidad=<?php echo $r->getIdComunidad(); ?>">
-                                            <i class="bi bi-pencil-square" title="Editar comunidad"></i>
-                                        </a>
-                                        &nbsp;&nbsp;
-                                        <a href="eliminar_comunidad.php?id_comunidad=<?php echo $r->getIdComunidad(); ?>">
-                                            <i class="bi bi-trash3" title="Eliminar comunidad"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                            <?php endforeach; ?>
-                            </tbody>
-                        </table>
+                <form action="" method="POST">
+                    <div class="row mb-3">
+                        <input type="hidden" value="guardar" name="txtaccion" />
+                        <label class="col-sm-2 col-form-table">Nombre:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="nombre" />
+                        </div>
                     </div>
-                </div>
-                <a href="agregar_parroquia.php">
-                    <button type="button" class="btn btn-outline-primary">Agregar parroquia</button>
-                </a>
-            </div>
 
+                    <div class="row mb-3">
+                        <label class="col-sm-2 col-form-table">Direccion:</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="direccion" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label class="col-sm-2 col-form-table">Telefono:</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="telefono" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label class="col-sm-2 col-form-table">Parroco:</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="parroco" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-sm-10">
+                        <input class="form-control" type="file" id="formFile"
+                               name="logo" id="validationCustom6" required>
+                        <span class="input-group-text" id="basic-addon3">Logo de La Parroquia</span>
+                        <div class="valid-feedback">
+
+                        </div>
+                        <div class="invalid-feedback">
+                            Ingresa tu logo
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label class="col-sm-2 col-form-table">SitioWeb:</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="sitioweb" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+
+                        <div class="col-sm-10">
+                            <button type="submit" class="btn btn-primary">Guardar parroquia</button>
+                            <input type="hidden" name="m" value="guardarParroquia">
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
     </section>
 
@@ -356,8 +378,7 @@ include("shared/footer.php");
 ?>
 <!-- End Footer -->
 
-<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
-            class="bi bi-arrow-up-short"></i></a>
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
 <!-- Vendor JS Files -->
 <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
@@ -371,15 +392,6 @@ include("shared/footer.php");
 
 <!-- Template Main JS File -->
 <script src="assets/js/main.js"></script>
-<script>
-    import {DataTable} from "./assets/vendor/simple-datatables/simple-datatables";
-
-    let parroquiTable = document.querySelector('.parroquiaTable');
-    let dataTable = new DataTable(".parroquia", {
-        searchable: true,
-        fixedHeight: true
-    });
-</script>
 
 </body>
 
