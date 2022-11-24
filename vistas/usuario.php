@@ -5,7 +5,13 @@ require_once '../controladores/usuarioController.php';
 
 $tu = new tbl_usuario();
 $dtu = new dt_tbl_usuario();
-$cu = new usuarioController();
+
+
+if(isset($_GET['id_usuario']))
+{
+    $id_usuario = $_GET['id_usuario'];
+    $dtu->eliminarUsuario($id_usuario);
+}
 ?>
 
 <!DOCTYPE html>
@@ -229,13 +235,13 @@ $cu = new usuarioController();
                     <li class="dropdown-header">
                         <h6>Kevin Anderson</h6>
                         <span>Web Designer</span>
-                    </li>
+
                     <li>
                         <hr class="dropdown-divider">
                     </li>
 
                     <li>
-                        <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                        <a class="dropdown-item d-flex align-items-center" href="users-profile.php">
                             <i class="bi bi-person"></i>
                             <span>My Profile</span>
                         </a>
@@ -330,8 +336,11 @@ include("shared/navbar.php");
                                             <i class="bi bi-pencil-square" title="Editar Usuario"></i>
                                         </a>
                                         &nbsp;&nbsp;
-                                        <a href="eliminar_usuario.php?id_usuario=<?php echo $r->getIdUsuario(); ?>">
+                                        <a href="usuario.php?id_usuario=<?php echo $r->getIdUsuario();?>">
                                             <i class="bi bi-trash3" title="Eliminar Usuario"></i>
+                                        </a>
+                                        <a href="agregar_rol_usuario.php?id_usuario=<?php echo $r->getIdUsuario();?>">
+                                            <i class="bi bi-person-badge-fill" title="Agregar Rol a Usuario"></i>
                                         </a>
                                     </td>
                                 </tr>

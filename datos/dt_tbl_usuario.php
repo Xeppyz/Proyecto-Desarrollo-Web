@@ -101,15 +101,20 @@ class dt_tbl_usuario extends Conexion
         }
     }
 
-    public function eliminarUsuario(tbl_usuario $tu)
+    public function eliminarUsuario($id_usuario)
     {
-        try {
-            $sql = 'UPDATE tbl_usuario SET estado = 3 where id_usuario = ?';
+        try
+        {
+            $sql = "UPDATE tbl_usuario SET estado = 3 where id_usuario = ?";
             $query = $this->conectar()->prepare($sql);
+
             $query->execute(array(
-                $tu->getIdUsuario()
+                $id_usuario
             ));
-        } catch (Exception $e) {
+
+        }
+        catch (Exception $e)
+        {
             die($e->getMessage());
         }
     }

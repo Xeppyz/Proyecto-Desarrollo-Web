@@ -1,3 +1,13 @@
+<?php
+require_once '../entidades/tbl_parroquia.php';
+require_once '../datos/dt_tbl_parroquia.php';
+require_once '../controladores/parroquiaControllerr.php';
+
+$tp = new tbl_parroquia();
+$dtp = new dt_tbl_parroquia();
+$cp = new parroquiaControllerr();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,11 +15,9 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Components / Accordion - NiceAdmin Bootstrap Template</title>
+    <title>Kermesse - Lista de parroquias</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
-
-    <base href="vistas/">
 
     <!-- Favicons -->
     <link href="assets/img/favicon.png" rel="icon">
@@ -17,7 +25,8 @@
 
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+          rel="stylesheet">
 
     <!-- Vendor CSS Files -->
     <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -212,13 +221,13 @@
             <li class="nav-item dropdown pe-3">
 
                 <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                    <img src="assets/img/logo2.png" alt="Profile" class="rounded-circle">
-                    <span class="d-none d-md-block dropdown-toggle ps-2">System Color</span>
+                    <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+                    <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
                 </a><!-- End Profile Iamge Icon -->
 
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                     <li class="dropdown-header">
-                        <h6>System Color</h6>
+                        <h6>Kevin Anderson</h6>
                         <span>Web Designer</span>
                     </li>
                     <li>
@@ -226,27 +235,27 @@
                     </li>
 
                     <li>
-                        <a class="dropdown-item d-flex align-items-center" href="perfil.php">
-                            <i class="bi bi-person"></i>
-                            <span>My Profile</span>
-                        </a>
+                        <!--<a class="dropdown-item d-flex align-items-center" href="users-profile.html">-->
+                        <i class="bi bi-person"></i>
+                        <span>My Profile</span>
+                        <!--</a>-->
                     </li>
                     <li>
                         <hr class="dropdown-divider">
                     </li>
 
                     <li>
-                        <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
-                            <i class="bi bi-gear"></i>
-                            <span>Account Settings</span>
-                        </a>
+                        <!-- <a class="dropdown-item d-flex align-items-center" href="users-profile.html">-->
+                        <i class="bi bi-gear"></i>
+                        <span>Account Settings</span>
+                        <!--</a>-->
                     </li>
                     <li>
                         <hr class="dropdown-divider">
                     </li>
 
                     <li>
-                        <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
+                        <a class="dropdown-item d-flex align-items-center" href="">
                             <i class="bi bi-question-circle"></i>
                             <span>Need Help?</span>
                         </a>
@@ -279,39 +288,61 @@ include("shared/navbar.php");
 <main id="main" class="main">
 
     <div class="pagetitle">
-        <h1>Proyecto Kermesse By System Color</h1>
+        <h1>Comunidades</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item">Pages</li>
-                <li class="breadcrumb-item active">Blank</li>
+                <li class="breadcrumb-item"><a href="#">Seguridad</a></li>
+                <li class="breadcrumb-item">Parroquias</li>
+
             </ol>
         </nav>
     </div><!-- End Page Title -->
 
     <section class="section">
         <div class="row">
-            <div class="col-lg-6">
-
+            <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Example Card</h5>
-                        <p>This is an examle page with no contrnt. You can use it as a starter for your custom pages.</p>
+                        <h5 class="card-title">Parroquias</h5>
+                        <table class="table parroquiaTable">
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Direccion</th>
+                                <th>telefono</th>
+                                <th>parroco</th>
+                                <th>logo</th>
+                                <th>SitioWeb</th>
+                                <th>Acción</th>
+
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <?php
+                            foreach ($dtp->listarParroquia() as $r):
+                                ?>
+                                <tr>
+                                    <td><?php echo $r->getIdParroquia(); ?></td>
+                                    <td><?php echo $r->getNombre(); ?></td>
+                                    <td><?php echo $r->getDireccion(); ?></td>
+                                    <td><?php echo $r->getTelefono(); ?></td>
+                                    <td><?php echo $r->getParroco(); ?></td>
+                                    <td><?php echo $r->getLogo(); ?></td>
+                                    <td><?php echo $r->getSitio_web(); ?></td>
+
+
+                                </tr>
+                            <?php endforeach; ?>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-
+                <a href="agregar_parroquia.php">
+                    <button type="button" class="btn btn-outline-primary">Agregar parroquia</button>
+                </a>
             </div>
 
-            <div class="col-lg-6">
-
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Example Card</h5>
-                        <p>This is an examle page with no contrnt. You can use it as a starter for your custom pages.</p>
-                    </div>
-                </div>
-
-            </div>
         </div>
     </section>
 
@@ -323,7 +354,8 @@ include("shared/footer.php");
 ?>
 <!-- End Footer -->
 
-<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+            class="bi bi-arrow-up-short"></i></a>
 
 <!-- Vendor JS Files -->
 <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
@@ -337,6 +369,15 @@ include("shared/footer.php");
 
 <!-- Template Main JS File -->
 <script src="assets/js/main.js"></script>
+<script>
+    import {DataTable} from "./assets/vendor/simple-datatables/simple-datatables";
+
+    let parroquiTable = document.querySelector('.parroquiaTable');
+    let dataTable = new DataTable(".parroquia", {
+        searchable: true,
+        fixedHeight: true
+    });
+</script>
 
 </body>
 
