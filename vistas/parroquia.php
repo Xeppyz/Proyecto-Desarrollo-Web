@@ -1,11 +1,11 @@
 <?php
-require_once '../entidades/tbl_comunidad.php';
-require_once '../datos/dt_tbl_comunidad.php';
-require_once '../controladores/comunidadController.php';
+require_once '../entidades/tbl_parroquia.php';
+require_once '../datos/dt_tbl_parroquia.php';
+require_once '../controladores/parroquiaControllerr.php';
 
-$tc = new tbl_comunidad();
-$dtc = new dt_tbl_comunidad();
-$cc = new comunidadController();
+$tp = new tbl_parroquia();
+$dtp = new dt_tbl_parroquia();
+$cp = new parroquiaControllerr();
 ?>
 
 <!DOCTYPE html>
@@ -15,7 +15,7 @@ $cc = new comunidadController();
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Kermesse - Lista de Comunidades</title>
+    <title>Kermesse - Lista de parroquias</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -292,7 +292,7 @@ include("shared/navbar.php");
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#">Seguridad</a></li>
-                <li class="breadcrumb-item">Comunidades</li>
+                <li class="breadcrumb-item">Parroquias</li>
 
             </ol>
         </nav>
@@ -303,37 +303,35 @@ include("shared/navbar.php");
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Comunidad</h5>
-                        <table class="table comunidadTable">
+                        <h5 class="card-title">Parroquias</h5>
+                        <table class="table parroquiaTable">
                             <thead>
                             <tr>
                                 <th>ID</th>
                                 <th>Nombre</th>
-                                <th>Responsable</th>
-                                <th>Descripcion</th>
+                                <th>Direccion</th>
+                                <th>telefono</th>
+                                <th>parroco</th>
+                                <th>logo</th>
+                                <th>SitioWeb</th>
                                 <th>Acción</th>
 
                             </tr>
                             </thead>
                             <tbody>
                             <?php
-                            foreach ($dtc->listarParroquia() as $r):
+                            foreach ($dtp->listarParroquia() as $r):
                                 ?>
                                 <tr>
-                                    <td><?php echo $r->getIdComunidad(); ?></td>
+                                    <td><?php echo $r->getIdParroquia(); ?></td>
                                     <td><?php echo $r->getNombre(); ?></td>
-                                    <td><?php echo $r->getResponsable(); ?></td>
-                                    <td><?php echo $r->getDescContribucion(); ?></td>
+                                    <td><?php echo $r->getDireccion(); ?></td>
+                                    <td><?php echo $r->getTelefono(); ?></td>
+                                    <td><?php echo $r->getParroco(); ?></td>
+                                    <td><?php echo $r->getLogo(); ?></td>
+                                    <td><?php echo $r->getSitio_web(); ?></td>
 
-                                    <td>
-                                        <a href="editar_comunidad.php?id_comunidad=<?php echo $r->getIdComunidad(); ?>">
-                                            <i class="bi bi-pencil-square" title="Editar comunidad"></i>
-                                        </a>
-                                        &nbsp;&nbsp;
-                                        <a href="eliminar_comunidad.php?id_comunidad=<?php echo $r->getIdComunidad(); ?>">
-                                            <i class="bi bi-trash3" title="Eliminar comunidad"></i>
-                                        </a>
-                                    </td>
+
                                 </tr>
                             <?php endforeach; ?>
                             </tbody>

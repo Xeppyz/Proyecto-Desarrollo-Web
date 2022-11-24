@@ -2,7 +2,8 @@
 
 require_once("conexion.php");
 require_once("../entidades/tbl_parroquia.php");
-class dt_tbl_parroquia extends Conexion{
+class dt_tbl_parroquia extends Conexion
+{
     private $myCon;
 
     public function listarParroquia()
@@ -40,7 +41,7 @@ class dt_tbl_parroquia extends Conexion{
         {
 
             $sql = "INSERT INTO tbl_parroquia (nombre, direccion, telefono, parraco, logo, sitioWeb) VALUES 
-                    (?,?,?,?,?,1)";
+                    (?,?,?,?,?,)";
             $query = $this->conectar()->prepare($sql)->execute(array(
                 $tp->getNombre(),
                 $tp->getDireccion(),
@@ -59,25 +60,7 @@ class dt_tbl_parroquia extends Conexion{
 
     }
 
-    public function editarParroquia(tbl_parroquia $tu)
-    {
-        try
-        {
-            $sql = 'UPDATE tbl_parroquia SET nombres = ?, direccion = ?, telefono = ?, parroco = ?, logo = ?, sitiWeb =?, estado = 2 where id_parroquia = ?';
-            $query = $this->conectar()->prepare($sql);
-            $query->execute(array(
-                $tu->getNombre(),
-                $tu->getDireccion(),
-                $tu->getTelefono(),
-                $tu->getParroco(),
-                $tu->getLogo(),
-                $tu->getSitioWeb()));
-        }
-        catch (Exception $e)
-        {
-            die($e->getMessage());
-        }
-    }
+
     public function mostrarParroquia($id_parroquia)
     {
         try
@@ -108,22 +91,6 @@ class dt_tbl_parroquia extends Conexion{
         }
     }
 
-    public function eliminarParroquia($id_parroquia)
-    {
-        try
-        {
-            $sql = "DELETE FROM `dbkermesse`.`tbl_parroquia` WHERE id_parroquia = ?;";
-            $query = $this->conectar()->prepare($sql);
 
-            $query->execute(array(
-                $id_parroquia
-            ));
-
-        }
-        catch (Exception $e)
-        {
-            die($e->getMessage());
-        }
-    }
 }
 ?>
