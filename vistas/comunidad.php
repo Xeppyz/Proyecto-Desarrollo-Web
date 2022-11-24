@@ -6,6 +6,12 @@ require_once '../controladores/comunidadController.php';
 $tc = new tbl_comunidad();
 $dtc = new dt_tbl_comunidad();
 $cc = new comunidadController();
+
+if(isset($_GET['id_comunidad']))
+{
+    $id_comunidad = $_GET['id_comunidad'];
+    $dtc->eliminarComunidad($id_comunidad);
+}
 ?>
 
 <!DOCTYPE html>
@@ -330,7 +336,7 @@ include("shared/navbar.php");
                                             <i class="bi bi-pencil-square" title="Editar comunidad"></i>
                                         </a>
                                         &nbsp;&nbsp;
-                                        <a href="eliminar_comunidad.php?id_comunidad=<?php echo $r->getIdComunidad(); ?>">
+                                        <a href="comunidad.php?id_comunidad=<?php echo $r->getIdComunidad(); ?>">
                                             <i class="bi bi-trash3" title="Eliminar comunidad"></i>
                                         </a>
                                     </td>

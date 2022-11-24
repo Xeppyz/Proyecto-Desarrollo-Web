@@ -13,7 +13,7 @@ class Conexion
         $this->host = "localhost";
         $this->db = "dbkermesse";
         $this->user = "root";
-        $this->password = "1234";
+        $this->password = "Speedo08";
         $this->charset = "utf8mb4";
     }
 
