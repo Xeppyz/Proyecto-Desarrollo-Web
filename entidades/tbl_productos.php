@@ -59,12 +59,12 @@ class tbl_productos
         $this->cantidad = $cantidad;
     }
 
-    public function getPrecioSugerido(){
-        return $this->precio_sugerido;
+    public function getPreciovSugerido(){
+        return $this->preciov_sugerido;
     }
 
-    public function setPrecioSugerido($precio_sugerido){
-        $this->precio_sugerido = $precio_sugerido;
+    public function setPreciovSugerido($preciov_sugerido){
+        $this->preciov_sugerido = $preciov_sugerido;
     }
 
     public function getEstado(){
