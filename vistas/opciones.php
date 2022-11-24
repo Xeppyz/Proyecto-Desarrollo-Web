@@ -341,8 +341,8 @@ include("shared/navbar.php");
                         </table>
                     </div>
                 </div>
-                <a href="agregar_comunidad.php">
-                    <button type="button" class="btn btn-outline-primary">Agregar comunidad</button>
+                <a href="agregar_opciones.php">
+                    <button type="button" class="btn btn-outline-primary">Agregar opciones</button>
                 </a>
             </div>
 
