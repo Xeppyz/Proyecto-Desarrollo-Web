@@ -11,12 +11,67 @@ class tbl_productos
     private $preciov_sugerido;
     private $estado;
 
-    public function __GET($k)
-    {
-        return $this->$k;
+    public function getIdProducto(){
+        return $this->id_producto;
     }
-    public function __SET($k, $v)
-    {
-        return $this->$k = $v;
+
+    public function setIdProducto($id_producto){
+        $this->id_producto = $id_producto;
+    }
+
+    public function getIdComunidad(){
+        return $this->id_comunidad;
+    }
+
+    public function setIdComunidad($id_comunidad){
+        $this->id_comunidad = $id_comunidad;
+    }
+
+    public function getIdCatProducto(){
+        return $this->id_cat_producto;
+    }
+
+    public function setIdCatProducto($id_cat_producto){
+        $this->id_cat_producto = $id_cat_producto;
+    }
+
+    public function getNombre(){
+        return $this->nombre;
+    }
+
+    public function setNombre($nombre){
+        $this->nombre = $nombre;
+    }
+
+    public function getDescripcion(){
+        return $this->descripcion;
+    }
+
+    public function setDescripcion($descripcion){
+        $this->descripcion = $descripcion;
+    }
+
+    public function getCantidad(){
+        return $this->cantidad;
+    }
+
+    public function setCantidad($cantidad){
+        $this->cantidad = $cantidad;
+    }
+
+    public function getPrecioSugerido(){
+        return $this->precio_sugerido;
+    }
+
+    public function setPrecioSugerido($precio_sugerido){
+        $this->precio_sugerido = $precio_sugerido;
+    }
+
+    public function getEstado(){
+        return $this->estado;
+    }
+
+    public function setEstado($estado){
+        $this->estado = $estado;
     }
 }
