@@ -34,6 +34,17 @@
                         <i class="bi bi-circle"></i><span>Productos</span>
                     </a>
                 </li>
+                <li>
+                    <a href="parroquia.php">
+                        <i class="bi bi-circle"></i><span>Parroquias</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="opciones.php">
+                        <i class="bi bi-circle"></i><span>Opciones</span>
+                    </a>
+                </li>
+
             </ul>
         </li><!-- End Components Nav -->
 

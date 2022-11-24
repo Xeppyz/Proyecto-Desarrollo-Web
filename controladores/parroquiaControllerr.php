@@ -2,83 +2,48 @@
 require_once('../entidades/tbl_parroquia.php');
 require_once("../datos/dt_tbl_parroquia.php");
 
-class comunidadController
-{
-    private $dt_comunidada;
+class parroquiaControllerr{
+    private $dt_parroquia;
 
-    public function __construct()
-    {
-        $this->dt_comunidad = new DT_tbl_parroquia();
+    public function __construct(){
+        $this->dt_parroquia= new dt_tbl_parroquia();
     }
-    public static function guardarComunidad()
-    {
-        try {
-            $nombre = $_REQUEST['nombre'];
-            $responsable = $_REQUEST['responsable'];
-            $desc_contribucion = $_REQUEST['desccontribucion'];
-
-            $tu = new tbl_comunidad();
-            $dta = new dt_tbl_comunidad();
-
-            $tu->setNombre($nombre);
-            $tu->setResponsable($responsable);
-            $tu->setDescContribucion($desc_contribucion);
-
-
-            $dta->guardarComunidad($tu);
-
-
-            header("Location: agregar_comunidad.php");
-        } catch (Exception $e) {
-            die($e->getMessage());
-        }
-    }
-
-    public function editarComunidad()
-    {
+    public static function guardarUsuario(){
         try
         {
-            $id_comunidad = $_REQUEST['id_comunidad'];
+
             $nombre = $_REQUEST['nombre'];
-            $responsable = $_REQUEST['responsable'];
-            $desc_contribucion = $_REQUEST['desc_contribucion'];
+            $direccion = $_REQUEST['direccion'];
+            $telefono = $_REQUEST['telefono'];
+            $parraco = $_REQUEST['parraco'];
+            $logo = $_REQUEST['logo'];
+            $sitioweb = $_REQUEST['sitioweb'];
 
-            $tu = new tbl_comunidad();
-            $dtu = new dt_tbl_comunidad();
+            $data = "'".$nombre."'".$direccion."'".$telefono."'".$parraco."'".$logo."'".$sitioweb;
 
-            $tu->setIdComunidad($id_comunidad);
-            $tu->setNombre($nombre);
-            $tu->setResponsable($responsable);
-            $tu->setDescContribucion($desc_contribucion);
+            $tp = new tbl_parroquia();
+            $dtp = new dt_tbl_parroquia();
+
+            $tp->setNombres($nombre);
+            $tp->setDireccion($direccion);
+            $tp->setTelefono($telefono);
+            $tp->setParroco($parraco);
+            $tp->setLogo($logo);
+            $tp->setSitioWeb($sitioweb);
+
 
             //$this->usuario->guardarUsuario($tu);
-            $dtu->editarComunidad($tu);
+            $dtp->guardarParroquia($tp);
 
 
-            header("Location: comunidad.php");
+            header("Location: agregar_parroquia.php");
+
         }
-        catch (Exception $e)
-        {
+        catch (Exception $e) {
             die($e->getMessage());
         }
+
     }
 
-    public static function eliminarComunidad()
-    {
-        try
-        {
-            $id = $_REQUEST['id_comunidad'];
-
-            $dtu = new dt_tbl_comunidad();
-
-            $dtu->editarComunidad($id);
-
-            header("Location: comunidad.php");
-        }
-        catch (Exception $e)
-        {
-            die($e->getMessage());
-        }
-    }
 
 }

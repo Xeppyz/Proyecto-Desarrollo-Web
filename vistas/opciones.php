@@ -1,16 +1,16 @@
 <?php
-require_once '../entidades/tbl_comunidad.php';
-require_once '../datos/dt_tbl_comunidad.php';
-require_once '../controladores/comunidadController.php';
+require_once '../entidades/tbl_opciones.php';
+require_once '../datos/dt_tbl_opciones.php';
+require_once '../controladores/opcionesController.php';
 
-$tc = new tbl_comunidad();
-$dtc = new dt_tbl_comunidad();
-$cc = new comunidadController();
+$to = new tbl_opciones();
+$dto = new dt_tbl_opciones();
+$oc = new opcionesController();
 
-if(isset($_GET['id_comunidad']))
+if(isset($_GET['id_opciones']))
 {
-    $id_comunidad = $_GET['id_comunidad'];
-    $dtc->eliminarComunidad($id_comunidad);
+    $id_opciones = $_GET['id_opciones'];
+    $dto->eliminarOpciones($id_opciones);
 }
 ?>
 
@@ -242,8 +242,8 @@ if(isset($_GET['id_comunidad']))
 
                     <li>
                         <!--<a class="dropdown-item d-flex align-items-center" href="users-profile.html">-->
-                            <i class="bi bi-person"></i>
-                            <span>My Profile</span>
+                        <i class="bi bi-person"></i>
+                        <span>My Profile</span>
                         <!--</a>-->
                     </li>
                     <li>
@@ -251,9 +251,9 @@ if(isset($_GET['id_comunidad']))
                     </li>
 
                     <li>
-                       <!-- <a class="dropdown-item d-flex align-items-center" href="users-profile.html">-->
-                            <i class="bi bi-gear"></i>
-                            <span>Account Settings</span>
+                        <!-- <a class="dropdown-item d-flex align-items-center" href="users-profile.html">-->
+                        <i class="bi bi-gear"></i>
+                        <span>Account Settings</span>
                         <!--</a>-->
                     </li>
                     <li>
@@ -294,11 +294,11 @@ include("shared/navbar.php");
 <main id="main" class="main">
 
     <div class="pagetitle">
-        <h1>Comunidades</h1>
+        <h1>Opciones</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#">Seguridad</a></li>
-                <li class="breadcrumb-item">Comunidades</li>
+                <li class="breadcrumb-item">Opciones</li>
 
             </ol>
         </nav>
@@ -309,35 +309,30 @@ include("shared/navbar.php");
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Comunidad</h5>
-                        <table class="table comunidadTable">
+                        <h5 class="card-title">Opciones</h5>
+                        <table class="table opcionesTable">
                             <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Nombre</th>
-                                <th>Responsable</th>
-                                <th>Descripcion</th>
+                                <th>Opcion descripcion</th>
                                 <th>Acción</th>
 
                             </tr>
                             </thead>
                             <tbody>
                             <?php
-                            foreach ($dtc->listarComunidad() as $r):
+                            foreach ($dto->listarOpciones() as $r):
                                 ?>
                                 <tr>
-                                    <td><?php echo $r->getIdComunidad(); ?></td>
-                                    <td><?php echo $r->getNombre(); ?></td>
-                                    <td><?php echo $r->getResponsable(); ?></td>
-                                    <td><?php echo $r->getDescContribucion(); ?></td>
-
+                                    <td><?php echo $r->getIdOpciones(); ?></td>
+                                    <td><?php echo $r->getOpcionDescripcion(); ?></td>
                                     <td>
-                                        <a href="editar_comunidad.php?id_comunidad=<?php echo $r->getIdComunidad(); ?>">
-                                            <i class="bi bi-pencil-square" title="Editar comunidad"></i>
+                                        <a href="editar_opciones.php?id_opciones=<?php echo $r->getIdOpciones(); ?>">
+                                            <i class="bi bi-pencil-square" title="Editar opciones"></i>
                                         </a>
                                         &nbsp;&nbsp;
-                                        <a href="comunidad.php?id_comunidad=<?php echo $r->getIdComunidad(); ?>">
-                                            <i class="bi bi-trash3" title="Eliminar comunidad"></i>
+                                        <a href="opciones.php?id_opciones=<?php echo $r->getIdOpciones(); ?>">
+                                            <i class="bi bi-trash3" title="Eliminar opciones"></i>
                                         </a>
                                     </td>
                                 </tr>
@@ -346,8 +341,8 @@ include("shared/navbar.php");
                         </table>
                     </div>
                 </div>
-                <a href="agregar_comunidad.php">
-                    <button type="button" class="btn btn-outline-primary">Agregar comunidad</button>
+                <a href="agregar_opciones.php">
+                    <button type="button" class="btn btn-outline-primary">Agregar opciones</button>
                 </a>
             </div>
 
@@ -380,8 +375,8 @@ include("shared/footer.php");
 <script>
     import {DataTable} from "./assets/vendor/simple-datatables/simple-datatables";
 
-    let comunidadTable = document.querySelector('.comunidadTable'); // modifique algo aqui.
-    let dataTable = new DataTable(".comunidadTable", {
+    let opcionesTable = document.querySelector('.opcionesTable');
+    let dataTable = new DataTable(".opcionesTable", {
         searchable: true,
         fixedHeight: true
     });
