@@ -333,6 +333,9 @@ include("shared/navbar.php");
                                         <a href="eliminar_usuario.php?id_usuario=<?php echo $r->getIdUsuario(); ?>">
                                             <i class="bi bi-trash3" title="Eliminar Usuario"></i>
                                         </a>
+                                        <a href="agregar_rol_usuario.php?id_usuario=<?php echo $r->getIdUsuario();?>">
+                                            <i class="bi bi-person-badge-fill" title="Agregar Rol a Usuario"></i>
+                                        </a>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
