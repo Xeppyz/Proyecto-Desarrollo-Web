@@ -1,6 +1,7 @@
 <?php
-require_once("conexion.php");
 require_once("../entidades/tbl_comunidad.php");
+require_once("../datos/dt_tbl_comunidad.php");
+
 class comunidadController
 {
     private $dt_comunidad;
