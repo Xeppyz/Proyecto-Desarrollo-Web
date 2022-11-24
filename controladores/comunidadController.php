@@ -15,8 +15,6 @@ class comunidadController
             $nombre = $_REQUEST['nombre'];
             $responsable = $_REQUEST['responsable'];
             $desc_contribucion = $_REQUEST['desc_contribucion'];
-            $estado = $_REQUEST['estado'];
-            $data = "'".$nombre."'".$responsable."'".$desc_contribucion."'".$estado."'";
 
             $tc = new tbl_comunidad();
             $dtc = new dt_tbl_comunidad();
@@ -25,7 +23,6 @@ class comunidadController
             $tc->setNombre($nombre);
             $tc->setResponsable($responsable);
             $tc->setDescContribucion($desc_contribucion);
-            $tc->setEstado($estado);
 
             $dtc->guardarComunidad($tc);
 

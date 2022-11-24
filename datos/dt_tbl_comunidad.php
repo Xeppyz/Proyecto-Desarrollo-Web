@@ -43,8 +43,7 @@ class dt_tbl_comunidad extends Conexion
             $query = $this->conectar()->prepare($sql)->execute(array(
                 $tc->getNombre(),
                 $tc->getResponsable(),
-                $tc->getDescContribucion(),
-                $tc->getEstado()
+                $tc->getDescContribucion()
             ));
             var_dump($query);
         }
