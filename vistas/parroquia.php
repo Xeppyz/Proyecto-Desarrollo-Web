@@ -1,19 +1,3 @@
-<?php
-require_once '../entidades/tbl_usuario.php';
-require_once '../datos/dt_tbl_usuario.php';
-require_once '../controladores/usuarioController.php';
-
-$tu = new tbl_usuario();
-$dtu = new dt_tbl_usuario();
-
-
-if(isset($_GET['id_usuario']))
-{
-    $id_usuario = $_GET['id_usuario'];
-    $dtu->eliminarUsuario($id_usuario);
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,7 +5,7 @@ if(isset($_GET['id_usuario']))
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Kermesse - Lista de Usuarios</title>
+    <title>Components / Accordion - NiceAdmin Bootstrap Template</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -31,8 +15,7 @@ if(isset($_GET['id_usuario']))
 
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
-          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
     <!-- Vendor CSS Files -->
     <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -227,21 +210,21 @@ if(isset($_GET['id_usuario']))
             <li class="nav-item dropdown pe-3">
 
                 <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                    <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-                    <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
+                    <img src="assets/img/logo2.png" alt="Profile" class="rounded-circle">
+                    <span class="d-none d-md-block dropdown-toggle ps-2">System Color</span>
                 </a><!-- End Profile Iamge Icon -->
 
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                     <li class="dropdown-header">
-                        <h6>Kevin Anderson</h6>
+                        <h6>System Color</h6>
                         <span>Web Designer</span>
-
+                    </li>
                     <li>
                         <hr class="dropdown-divider">
                     </li>
 
                     <li>
-                        <a class="dropdown-item d-flex align-items-center" href="users-profile.php">
+                        <a class="dropdown-item d-flex align-items-center"  href="perfil.php">
                             <i class="bi bi-person"></i>
                             <span>My Profile</span>
                         </a>
@@ -294,67 +277,21 @@ include("shared/navbar.php");
 <main id="main" class="main">
 
     <div class="pagetitle">
-        <h1>Usuarios</h1>
+        <h1>Parroquias</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">Seguridad</a></li>
-                <li class="breadcrumb-item">Usuarios</li>
-
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item">Pages</li>
+                <li class="breadcrumb-item active">Parroquias</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
 
     <section class="section">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Usuarios</h5>
-                        <table class="table usuariosTable">
-                            <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Nombres</th>
-                                <th>Apellidos</th>
-                                <th>Email</th>
-                                <th>Usuario</th>
-                                <th>Acción</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <?php
-                            foreach ($dtu->listarUsuario() as $r):
-                                ?>
-                                <tr>
-                                    <td><?php echo $r->getIdUsuario(); ?></td>
-                                    <td><?php echo $r->getNombres(); ?></td>
-                                    <td><?php echo $r->getApellidos(); ?></td>
-                                    <td><?php echo $r->getEmail(); ?></td>
-                                    <td><?php echo $r->getUsuario(); ?></td>
-                                    <td>
-                                        <a href="editar_usuario.php?id_usuario=<?php echo $r->getIdUsuario(); ?>">
-                                            <i class="bi bi-pencil-square" title="Editar Usuario"></i>
-                                        </a>
-                                        &nbsp;&nbsp;
-                                        <a href="usuario.php?id_usuario=<?php echo $r->getIdUsuario();?>">
-                                            <i class="bi bi-trash3" title="Eliminar Usuario"></i>
-                                        </a>
-                                        <a href="agregar_rol_usuario.php?id_usuario=<?php echo $r->getIdUsuario();?>">
-                                            <i class="bi bi-person-badge-fill" title="Agregar Rol a Usuario"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                            <?php endforeach; ?>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <a href="agregar_usuario.php">
-                    <button type="button" class="btn btn-outline-primary">Agregar Usuario</button>
-                </a>
-            </div>
-
-        </div>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Parroquias Agregadas</h5>
+                <h5 class="card-title">En Proceso...</h5>
     </section>
 
 </main><!-- End #main -->
@@ -365,8 +302,7 @@ include("shared/footer.php");
 ?>
 <!-- End Footer -->
 
-<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
-            class="bi bi-arrow-up-short"></i></a>
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
 <!-- Vendor JS Files -->
 <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
@@ -380,13 +316,6 @@ include("shared/footer.php");
 
 <!-- Template Main JS File -->
 <script src="assets/js/main.js"></script>
-<script>
-    let usuarioTable = document.querySelector('.usuariosTable');
-    let dataTable = new DataTable(".usuariosTable", {
-        searchable: true,
-        fixedHeight: true
-    });
-</script>
 
 </body>
 
