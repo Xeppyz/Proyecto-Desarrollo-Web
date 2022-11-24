@@ -25,6 +25,11 @@
                     </a>
                 </li>
                 <li>
+                    <a href="comunidad.php">
+                        <i class="bi bi-circle"></i><span>Comunidades</span>
+                    </a>
+                </li>
+                <li>
                     <a href="productos.php">
                         <i class="bi bi-circle"></i><span>Productos</span>
                     </a>

@@ -1,7 +1,9 @@
 <?php
+
 require_once("conexion.php");
 require_once("../entidades/tbl_comunidad.php");
-class dt_tbl_comunidad
+
+class dt_tbl_comunidad extends Conexion
 {
     private $myCon;
 
@@ -87,7 +89,8 @@ class dt_tbl_comunidad
                 $tc->getNombre(),
                 $tc->getResponsable(),
                 $tc->getDescContribucion(),
-                $tc->getEstado()
+                $tc->getEstado(),
+                $tc->getIdComunidad()
             ));
 
         }
