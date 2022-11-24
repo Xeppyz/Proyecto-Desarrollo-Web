@@ -321,34 +321,22 @@ include("shared/navbar.php");
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label class="col-sm-2 col-form-table">Apellido:</label>
+                        <label class="col-sm-2 col-form-table">Responsable:</label>
                         <div class="col-sm-10">
-                            <input type="text" name="apellido" class="form-control" />
+                            <input type="text" name="responsable" class="form-control" />
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label class="col-sm-2 col-form-table">Email:</label>
+                        <label class="col-sm-2 col-form-table">Descripcion responsable:</label>
                         <div class="col-sm-10">
-                            <input type="email" name="email" class="form-control" />
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <label class="col-sm-2 col-form-table">Usuario:</label>
-                        <div class="col-sm-10">
-                            <input type="text" name="usuario" class="form-control" />
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <label class="col-sm-2 col-form-table">Contraseña:</label>
-                        <div class="col-sm-10">
-                            <input type="password" name="pwd" class="form-control" />
+                            <input type="text" name="desc_contribucion" class="form-control" />
                         </div>
                     </div>
                     <div class="row mb-3">
 
                         <div class="col-sm-10">
-                            <button type="submit" class="btn btn-primary">Guardar Usuario</button>
-                            <input type="hidden" name="m" value="guardarUsuario">
+                            <button type="submit" class="btn btn-primary">Guardar comunidad</button>
+                            <input type="hidden" name="m" value="guardarComunidad">
                         </div>
                     </div>
                 </form>
