@@ -10,7 +10,7 @@ class dt_tbl_parroquia extends Conexion
     {
         try
         {
-            $sql = "SELECT * FROM tbl_parroquia where estado<>3;";
+            $sql = "SELECT * FROM tbl_parroquia;";
             $result = array();
             $stm = $this->conectar()->prepare($sql);
             $stm->execute();
@@ -65,7 +65,7 @@ class dt_tbl_parroquia extends Conexion
     {
         try
         {
-            $sql = "SELECT * FROM tbl_parroquia where estado<>3 and id_parroquia = ?;";
+            $sql = "SELECT * FROM tbl_parroquia where id_parroquia = ?;";
             //$result = array();
             $stm = $this->conectar()->prepare($sql);
             $stm->execute(array($id_parroquia));
