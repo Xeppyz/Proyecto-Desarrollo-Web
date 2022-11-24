@@ -39,9 +39,8 @@ class comunidadController
         {
             $id = $_REQUEST['id_comunidad'];
             $nombre = $_REQUEST['nombre'];
-            $responsable = $_REQUEST['apellido'];
-            $desc_contribucion = $_REQUEST['email'];
-            $estado = $_REQUEST['usuario'];
+            $responsable = $_REQUEST['responsable'];
+            $desc_contribucion = $_REQUEST['desc_contribucion'];
 
             $tc = new tbl_comunidad();
             $dtc = new dt_tbl_comunidad();
@@ -50,7 +49,6 @@ class comunidadController
             $tc->setNombre($nombre);
             $tc->setResponsable($responsable);
             $tc->setDescContribucion($desc_contribucion);
-            $tc->setEstado($estado);
 
             $dtc->editarComunidad($tc);
 

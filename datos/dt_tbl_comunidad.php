@@ -68,6 +68,7 @@ class dt_tbl_comunidad extends Conexion
             $tc->setNombre($r->nombre);
             $tc->setResponsable($r->responsable);
             $tc->setDescContribucion($r->desc_contribucion);
+            $tc->setEstado($r->estado);
 
             return $tc;
         }
@@ -81,14 +82,13 @@ class dt_tbl_comunidad extends Conexion
     {
         try
         {
-            $sql = "UPDATE tbl_comunidad SET nombre = ?, responsable = ?, desc_contribucion = ?, estado = 2 where id_usuario = ?";
+            $sql = "UPDATE tbl_comunidad SET nombre = ?, responsable = ?, desc_contribucion = ?, estado = 2 where id_comunidad = ?";
             $query = $this->conectar()->prepare($sql);
 
             $query->execute(array(
                 $tc->getNombre(),
                 $tc->getResponsable(),
                 $tc->getDescContribucion(),
-                $tc->getEstado(),
                 $tc->getIdComunidad()
             ));
 
