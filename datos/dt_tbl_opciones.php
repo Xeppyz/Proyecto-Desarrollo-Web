@@ -79,8 +79,7 @@ class dt_tbl_opciones extends Conexion
 
             $query->execute(array(
                 $to->getOpcionDescripcion(),
-                $to->getIdOpciones(),
-
+                $to->getIdOpciones()
             ));
 
         }

@@ -5,15 +5,15 @@ require_once '../datos/dt_tbl_opciones.php';
 require_once '../controladores/opcionesController.php';
 
 
-$dtu = new dt_tbl_opciones();
+$dto = new dt_tbl_opciones();
 
 $varid_opciones = 0;
 if(isset($varid_opciones))
 {
-    $varId_usuario = $_GET['id_opciones'];
+    $varid_opciones = $_GET['id_opciones'];
 }
 
-$data_opciones = $dtu->mostrarOpciones($varid_opciones);
+$data_opciones = $dto->mostrarOpciones($varid_opciones);
 
 if(isset($_POST['m'])){
     $metodo = $_POST['m'];
@@ -309,7 +309,7 @@ include("shared/navbar.php");
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#">Home</a></li>
                 <li class="breadcrumb-item">Seguridad</li>
-                <li class="breadcrumb-item active">Agregar opciones</li>
+                <li class="breadcrumb-item active">Actualizar opciones</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
