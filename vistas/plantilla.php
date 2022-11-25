@@ -46,7 +46,7 @@
 
     <div class="d-flex align-items-center justify-content-between">
         <a href="#" class="logo d-flex align-items-center">
-            <img src="assets/img/logo.png" alt="">
+            <img src="assets/img/logo2.jpg" alt="">
             <span class="d-none d-lg-block">NiceAdmin</span>
         </a>
         <i class="bi bi-list toggle-sidebar-btn"></i>
@@ -212,13 +212,13 @@
             <li class="nav-item dropdown pe-3">
 
                 <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                    <img src="assets/img/logo2.png" alt="Profile" class="rounded-circle">
-                    <span class="d-none d-md-block dropdown-toggle ps-2">System Color</span>
+                    <img src="assets/img/logo2.jpg" alt="Profile" class="rounded-circle">
+                    <span class="d-none d-md-block dropdown-toggle ps-2">Neo Tech</span>
                 </a><!-- End Profile Iamge Icon -->
 
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                     <li class="dropdown-header">
-                        <h6>System Color</h6>
+                        <h6>Neo Tech</h6>
                         <span>Web Designer</span>
                     </li>
                     <li>
@@ -226,7 +226,7 @@
                     </li>
 
                     <li>
-                        <a class="dropdown-item d-flex align-items-center" href="perfil.php">
+                        <a class="dropdown-item d-flex align-items-center" href="users-profile.php">
                             <i class="bi bi-person"></i>
                             <span>My Profile</span>
                         </a>
@@ -279,7 +279,7 @@ include("shared/navbar.php");
 <main id="main" class="main">
 
     <div class="pagetitle">
-        <h1>Proyecto Kermesse By System Color</h1>
+        <h1>Proyecto Kermesse By Neo Tech</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#">Home</a></li>
