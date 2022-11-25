@@ -2,9 +2,7 @@
 
 require_once("conexion.php");
 require_once("../entidades/tbl_parroquia.php");
-class dt_tbl_parroquia extends Conexion
-{
-    private $myCon;
+class dt_tbl_parroquia extends Conexion{
 
     public function listarParroquia()
     {
@@ -17,16 +15,16 @@ class dt_tbl_parroquia extends Conexion
 
             foreach($stm->fetchAll(PDO::FETCH_OBJ) as $r)
             {
-                $tp = new tbl_parroquia();
-                $tp->setIdParroquia($r->id_parroquia);
-                $tp->setNombre($r->nombre);
-                $tp->setDireccion($r->direccion);
-                $tp->setTelefono($r->telefono);
-                $tp->setParroco($r->parroco);
-                $tp->setLogo($r->logo);
-                $tp->setSitioWeb($r->sitioWeb);
+                $tu = new tbl_parroquia();
+                $tu->setIdParroquia($r->idParroquia);
+                $tu->setNombre($r->nombre);
+                $tu->setDireccion($r->direccion);
+                $tu->setTelefono($r->telefono);
+                $tu->setParroco($r->parroco);
+                $tu->setLogo($r->logo);
+                $tu->setSitioWeb($r->sitio_web);
 
-                $result[] = $tp;
+                $result[] = $tu;
             }
             return $result;
         } catch (Exception $e)
@@ -35,23 +33,22 @@ class dt_tbl_parroquia extends Conexion
         }
     }
 
-    public function guardarParroquia(tbl_parroquia $tp)
+    public function guardarParroquia(tbl_parroquia $tu)
     {
         try
         {
 
-            $sql = "INSERT INTO tbl_parroquia (nombre, direccion, telefono, parraco, logo, sitioWeb) VALUES 
-                    (?,?,?,?,?,)";
+            $sql = "INSERT INTO `dbkermesse`.`tbl_parroquia` (`nombre`, `direccion`, `telefono`, `parroco`, `logo`, `sitio_web`)
+             VALUES (?, ?, ?, ?, ?, ?);";
             $query = $this->conectar()->prepare($sql)->execute(array(
-                $tp->getNombre(),
-                $tp->getDireccion(),
-                $tp->getTelefono(),
-                $tp->getParroco(),
-                $tp->getLogo(),
-            $tp->getSitioWeb()));
-
+                $tu->getNombre(),
+                $tu->getDireccion(),
+                $tu->getTelefono(),
+                $tu->getParroco(),
+                $tu->getLogo(),
+                $tu->getSitioWeb(),
+            ));
             var_dump($query);
-
         }
         catch (Exception $e)
         {
@@ -60,29 +57,47 @@ class dt_tbl_parroquia extends Conexion
 
     }
 
-
-    public function mostrarParroquia($id_parroquia)
+    public function editarParroquia(tbl_parroquia $tu)
     {
         try
         {
-            $sql = "SELECT * FROM tbl_parroquia where id_parroquia = ?;";
-            //$result = array();
+            $sql = 'UPDATE tbl_parroquia SET nombre = ?, direccion = ?, telefono = ?, parroco = ?, logo = ?, sitio_web = ? where idParroquia = ?';
+            $query = $this->conectar()->prepare($sql);
+            $query->execute(array(
+                $tu->getNombre(),
+                $tu->getDireccion(),
+                $tu->getTelefono(),
+                $tu->getParroco(),
+                $tu->getLogo(),
+                $tu->getSitioWeb(),
+                $tu->getIdParroquia()
+            ));
+        }
+        catch (Exception $e)
+        {
+            die($e->getMessage());
+        }
+    }
+    public function mostrarParroquia($idParroquia)
+    {
+        try
+        {
+            $sql = "SELECT * FROM tbl_parroquia where idParroquia = ?;";
             $stm = $this->conectar()->prepare($sql);
-            $stm->execute(array($id_parroquia));
+            $stm->execute(array($idParroquia));
 
             $r = $stm->fetch(PDO::FETCH_OBJ);
 
             $tu = new tbl_parroquia();
 
-            $tu->setIdParroquia($r->id_parroquia);
-            $tu->setNombre($r->nombres);
+            $tu->setIdParroquia($r->idParroquia);
+            $tu->setNombre($r->nombre);
             $tu->setDireccion($r->direccion);
             $tu->setTelefono($r->telefono);
             $tu->setParroco($r->parroco);
             $tu->setLogo($r->logo);
-            $tu->setSitioWeb($r->sitioWeb);
+            $tu->setSitioWeb($r->sitio_web);
 
-            //$result[] = $tu;
             return $tu;
         }
         catch (Exception $e)
@@ -91,6 +106,22 @@ class dt_tbl_parroquia extends Conexion
         }
     }
 
+    public function eliminarParroquia($idParroquia)
+    {
+        try
+        {
+            $sql = "DELETE FROM `dbkermesse`.`tbl_parroquia` WHERE idParroquia = ?;";
+            $query = $this->conectar()->prepare($sql);
 
+            $query->execute(array(
+                $idParroquia
+            ));
+
+        }
+        catch (Exception $e)
+        {
+            die($e->getMessage());
+        }
+    }
 }
 ?>
