@@ -50,13 +50,13 @@ class dt_tbl_categoria_producto extends Conexion
         }
     }
 
-    public function mostrarCategoriaProducto($id_categoria_producto)
+    public function mostrarCategoria($id)
     {
         try
         {
             $sql = "SELECT * FROM tbl_categoria_producto where estado<>3 and id_categoria_producto=?;";
             $stm = $this->conectar()->prepare($sql);
-            $stm->execute(array($id_categoria_producto));
+            $stm->execute(array($id));
 
             $r = $stm->fetch(PDO::FETCH_OBJ);
             $tcp = new tbl_categoria_producto();
@@ -65,6 +65,7 @@ class dt_tbl_categoria_producto extends Conexion
             $tcp->setNombre($r->nombre);
             $tcp->setDescripcion($r->descripcion);
             $tcp->setEstado($r->estado);
+
 
             return $tcp;
         }

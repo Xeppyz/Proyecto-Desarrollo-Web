@@ -2,20 +2,13 @@
 
 require_once '../entidades/tbl_categoria_producto.php';
 require_once '../datos/dt_tbl_categoria_producto.php';
-require_once '../controladores/categoria_productoController.php';
+require_once '../controladores/categoriaProductoController.php';
 
 if(isset($_POST['m'])){
     $metodo = $_POST['m'];
-    if(method_exists("categoria_productoController", $metodo));
-}else{
-
-}
-
-if(isset($_POST['m'])){
-    $metodo = $_POST['m'];
-    if(method_exists("categoria_productoController",$metodo))
+    if(method_exists("categoriaProductoController",$metodo))
     {
-        categoria_productoController::{$metodo}();
+        categoriaProductoController::{$metodo}();
     }
 }
 ?>

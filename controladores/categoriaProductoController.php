@@ -2,7 +2,7 @@
 require_once("../entidades/tbl_categoria_producto.php");
 require_once("../datos/dt_tbl_categoria_producto.php");
 
-class categoria_productoController
+class categoriaProductoController
 {
     private $dt_categoria_producto;
 
