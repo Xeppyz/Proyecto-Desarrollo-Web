@@ -4,6 +4,8 @@ require_once("../entidades/tbl_categoria_producto.php");
 
 class dt_tbl_categoria_producto extends Conexion
 {
+    private $myCon;
+
     public function listarCategoriaProducto(){
         try
         {
