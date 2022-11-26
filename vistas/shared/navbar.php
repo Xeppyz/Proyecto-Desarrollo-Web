@@ -49,6 +49,11 @@
                         <i class="bi bi-circle"></i><span>Opciones</span>
                     </a>
                 </li>
+                <li>
+                    <a href="categoria_producto.php">
+                        <i class="bi bi-circle"></i><span>Categoria producto</span>
+                    </a>
+                </li>
 
             </ul>
         </li><!-- End Components Nav -->
