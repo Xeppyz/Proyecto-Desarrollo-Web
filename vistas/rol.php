@@ -1,15 +1,15 @@
 <?php
+require_once '../entidades/tbl_rol.php';
+require_once '../datos/dt_tbl_rol.php';
+require_once '../controladores/rolController.php';
 
-require_once '../entidades/tbl_comunidad.php';
-require_once '../datos/dt_tbl_comunidad.php';
-require_once '../controladores/comunidadController.php';
+$tr = new tbl_rol();
+$dtr = new dt_tbl_rol();
+$cc = new rolController();
 
-
-if (isset($_POST['m'])) {
-    $metodo = $_POST['m'];
-    if (method_exists("comunidadController", $metodo)) {
-        comunidadController::{$metodo}();
-    }
+if (isset($_GET['id_rol'])) {
+    $id_rol = $_GET['id_rol'];
+    $dtr->eliminarRol($id_rol);
 }
 ?>
 
@@ -20,7 +20,7 @@ if (isset($_POST['m'])) {
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Components / Accordion - NiceAdmin Bootstrap Template</title>
+    <title>Kermesse - Lista de Comunidades</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -60,7 +60,7 @@ if (isset($_POST['m'])) {
 
     <div class="d-flex align-items-center justify-content-between">
         <a href="#" class="logo d-flex align-items-center">
-            <img src="assets/img/logo.png" alt="">
+            <img src="assets/img/logo2.jpg" alt="">
             <span class="d-none d-lg-block">NiceAdmin</span>
         </a>
         <i class="bi bi-list toggle-sidebar-btn"></i>
@@ -77,12 +77,12 @@ include("shared/navbar.php");
 <main id="main" class="main">
 
     <div class="pagetitle">
-        <h1>Agregar Usuario</h1>
+        <h1>Comunidades</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item">Seguridad</li>
-                <li class="breadcrumb-item active">Agregar Usuario</li>
+                <li class="breadcrumb-item"><a href="#">Seguridad</a></li>
+                <li class="breadcrumb-item">Comunidades</li>
+
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -90,35 +90,44 @@ include("shared/navbar.php");
     <section class="section">
         <div class="row">
             <div class="col-lg-12">
-                <form action="" method="POST">
-                    <div class="row mb-3">
-                        <input type="hidden" value="guardar" name="txtaccion"/>
-                        <label class="col-sm-2 col-form-table">Nombre:</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" name="nombre"/>
-                        </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Comunidad</h5>
+                        <table class="table comunidadTable">
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Descripcion</th>
+                                <th>Acción</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <?php
+                            foreach ($dtr->listarRol() as $r):
+                                ?>
+                                <tr>
+                                    <td><?php echo $r->getIdRol(); ?></td>
+                                    <td><?php echo $r->getRolDescripcion(); ?></td>
+                                    <td>
+                                        <a href="editar_rol.php?id_rol=<?php echo $r->getIdRol(); ?>">
+                                            <i class="bi bi-pencil-square" title="Editar rol"></i>
+                                        </a>
+                                        &nbsp;&nbsp;
+                                        <a href="rol.php?id_rol=<?php echo $r->getIdRol(); ?>">
+                                            <i class="bi bi-trash3" title="Eliminar rol"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                            </tbody>
+                        </table>
                     </div>
-                    <div class="row mb-3">
-                        <label class="col-sm-2 col-form-table">Responsable:</label>
-                        <div class="col-sm-10">
-                            <input type="text" name="responsable" class="form-control"/>
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <label class="col-sm-2 col-form-table">Descripcion responsable:</label>
-                        <div class="col-sm-10">
-                            <input type="text" name="desc_contribucion" class="form-control"/>
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-
-                        <div class="col-sm-10">
-                            <button type="submit" class="btn btn-primary">Guardar comunidad</button>
-                            <input type="hidden" name="m" value="guardarComunidad">
-                        </div>
-                    </div>
-                </form>
+                </div>
+                <a href="agregar_rol.php">
+                    <button type="button" class="btn btn-outline-primary">Agregar rol</button>
+                </a>
             </div>
+
         </div>
     </section>
 
@@ -131,7 +140,7 @@ include("shared/footer.php");
 <!-- End Footer -->
 
 <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
-            class="bi bi-arrow-up-short"></i></a>
+        class="bi bi-arrow-up-short"></i></a>
 
 <!-- Vendor JS Files -->
 <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
@@ -145,6 +154,15 @@ include("shared/footer.php");
 
 <!-- Template Main JS File -->
 <script src="assets/js/main.js"></script>
+<script>
+    import {DataTable} from "./assets/vendor/simple-datatables/simple-datatables";
+
+    let comunidadTable = document.querySelector('.comunidadTable'); // modifique algo aqui.
+    let dataTable = new DataTable(".comunidadTable", {
+        searchable: true,
+        fixedHeight: true
+    });
+</script>
 
 </body>
 

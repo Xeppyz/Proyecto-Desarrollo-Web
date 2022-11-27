@@ -1,14 +1,14 @@
 <?php
 
-require_once '../entidades/tbl_comunidad.php';
-require_once '../datos/dt_tbl_comunidad.php';
-require_once '../controladores/comunidadController.php';
+require_once '../entidades/tbl_rol.php';
+require_once '../datos/dt_tbl_rol.php';
+require_once '../controladores/rolController.php';
 
 
 if (isset($_POST['m'])) {
     $metodo = $_POST['m'];
-    if (method_exists("comunidadController", $metodo)) {
-        comunidadController::{$metodo}();
+    if (method_exists("rolController", $metodo)) {
+        rolController::{$metodo}();
     }
 }
 ?>
@@ -93,28 +93,17 @@ include("shared/navbar.php");
                 <form action="" method="POST">
                     <div class="row mb-3">
                         <input type="hidden" value="guardar" name="txtaccion"/>
-                        <label class="col-sm-2 col-form-table">Nombre:</label>
+                        <label class="col-sm-2 col-form-table">Descripcion:</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="nombre"/>
+                            <input type="text" class="form-control" name="rol_descripcion"/>
                         </div>
                     </div>
-                    <div class="row mb-3">
-                        <label class="col-sm-2 col-form-table">Responsable:</label>
-                        <div class="col-sm-10">
-                            <input type="text" name="responsable" class="form-control"/>
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <label class="col-sm-2 col-form-table">Descripcion responsable:</label>
-                        <div class="col-sm-10">
-                            <input type="text" name="desc_contribucion" class="form-control"/>
-                        </div>
-                    </div>
+
                     <div class="row mb-3">
 
                         <div class="col-sm-10">
-                            <button type="submit" class="btn btn-primary">Guardar comunidad</button>
-                            <input type="hidden" name="m" value="guardarComunidad">
+                            <button type="submit" class="btn btn-primary">Guardar rol</button>
+                            <input type="hidden" name="m" value="guardarRol">
                         </div>
                     </div>
                 </form>
@@ -131,7 +120,7 @@ include("shared/footer.php");
 <!-- End Footer -->
 
 <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
-            class="bi bi-arrow-up-short"></i></a>
+        class="bi bi-arrow-up-short"></i></a>
 
 <!-- Vendor JS Files -->
 <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
