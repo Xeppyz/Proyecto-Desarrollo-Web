@@ -4,12 +4,6 @@ require_once '../entidades/tbl_opciones.php';
 require_once '../datos/dt_tbl_opciones.php';
 require_once '../controladores/opcionesController.php';
 
-if (isset($_POST['m'])) {
-    $metodo = $_POST['m'];
-    if (method_exists("opcionesController", $metodo)) ;
-} else {
-
-}
 
 if (isset($_POST['m'])) {
     $metodo = $_POST['m'];

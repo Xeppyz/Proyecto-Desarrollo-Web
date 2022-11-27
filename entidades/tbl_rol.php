@@ -4,27 +4,52 @@ class tbl_rol{
     private $rol_descripcion;
     private $estado;
 
-    public function getIdRol(){
+    /**
+     * @return mixed
+     */
+    public function getIdRol()
+    {
         return $this->id_rol;
     }
 
-    public function setIdRol($id_usuario){
-        $this->id_rol = $id_usuario;
+    /**
+     * @param mixed $id_rol
+     */
+    public function setIdRol($id_rol): void
+    {
+        $this->id_rol = $id_rol;
     }
 
-    public function getRolDesc(){
+    /**
+     * @return mixed
+     */
+    public function getRolDescripcion()
+    {
         return $this->rol_descripcion;
     }
 
-    public function setRolDesc($nombres){
-        $this->rol_descripcion = $nombres;
+    /**
+     * @param mixed $rol_descripcion
+     */
+    public function setRolDescripcion($rol_descripcion): void
+    {
+        $this->rol_descripcion = $rol_descripcion;
     }
 
-    public function getEstado(){
+    /**
+     * @return mixed
+     */
+    public function getEstado()
+    {
         return $this->estado;
     }
 
-    public function setEstado($estado){
+    /**
+     * @param mixed $estado
+     */
+    public function setEstado($estado): void
+    {
         $this->estado = $estado;
     }
+
 }
