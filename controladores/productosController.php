@@ -20,8 +20,6 @@ class productosController
             $descripcion = $_REQUEST['descripcion'];
             $cantidad = $_REQUEST['cantidad'];
             $preciov_segurido = $_REQUEST['preciov_sugerido'];
-            $estado = $_REQUEST['estado'];
-            $data = "'" . $nombre . "'" . $descripcion . "'" . $cantidad . "'" . $preciov_segurido . "'" . $estado;
 
             $tp = new tbl_productos();
             $dtp = new dt_tbl_productos();
@@ -32,7 +30,6 @@ class productosController
             $tp->setDescripcion($descripcion);
             $tp->setCantidad($cantidad);
             $tp->setPreciovSugerido($preciov_segurido);
-            $tp->setEstado($estado);
 
             $dtp->guardarProducto($tp);
 
@@ -52,7 +49,6 @@ class productosController
             $cantidad = $_REQUEST['cantidad'];
             $preciov_segurido = $_REQUEST['preciov_sugerido'];
             $estado = $_REQUEST['estado'];
-            $data = "'" . $id . "'" . $nombre . "'" . $descripcion . "'" . $cantidad . "'" . $preciov_segurido . "'" . $estado;
 
             $tp = new tbl_productos();
             $dtp = new dt_tbl_productos();
@@ -67,6 +63,9 @@ class productosController
             $tp->setEstado($estado);
 
             $dtp->editarProducto($tp);
+
+            header("Location: agregar_productos.php");
+
 
         } catch (Exception $e) {
             die($e->getMessage());

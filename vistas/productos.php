@@ -1,15 +1,15 @@
 <?php
-require_once '../entidades/tbl_rol.php';
-require_once '../datos/dt_tbl_rol.php';
-require_once '../controladores/rolController.php';
+require_once '../entidades/tbl_productos.php';
+require_once '../datos/dt_tbl_productos.php';
+require_once '../controladores/productosController.php';
 
-$tr = new tbl_rol();
-$dtr = new dt_tbl_rol();
-$cc = new rolController();
+$tp = new tbl_productos();
+$dtp = new dt_tbl_productos();
+$pc = new productosController();
 
-if (isset($_GET['id_rol'])) {
-    $id_rol = $_GET['id_rol'];
-    $dtr->eliminarRol($id_rol);
+if (isset($_GET['id_producto'])) {
+    $id_producto = $_GET['id_producto'];
+    $dtp->eliminarProducto($id_producto);
 }
 ?>
 
@@ -77,11 +77,11 @@ include("shared/navbar.php");
 <main id="main" class="main">
 
     <div class="pagetitle">
-        <h1>Comunidades</h1>
+        <h1>Productos</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#">Seguridad</a></li>
-                <li class="breadcrumb-item">Comunidades</li>
+                <li class="breadcrumb-item">Productos</li>
 
             </ol>
         </nav>
@@ -92,29 +92,39 @@ include("shared/navbar.php");
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Comunidad</h5>
-                        <table class="table rolTable">
+                        <h5 class="card-title">Productos</h5>
+                        <table class="table productosTable">
                             <thead>
                             <tr>
                                 <th>ID</th>
+                                <th>ID Comunidad</th>
+                                <th>ID Cat.Producto</th>
+                                <th>Nombre</th>
                                 <th>Descripcion</th>
+                                <th>Cantidad</th>
+                                <th>Precio sugerido</th>
                                 <th>Acción</th>
                             </tr>
                             </thead>
                             <tbody>
                             <?php
-                            foreach ($dtr->listarRol() as $r):
+                            foreach ($dtp->listarProductos() as $r):
                                 ?>
                                 <tr>
-                                    <td><?php echo $r->getIdRol(); ?></td>
-                                    <td><?php echo $r->getRolDescripcion(); ?></td>
+                                    <td><?php echo $r->getIdProducto(); ?></td>
+                                    <td><?php echo $r->getIdComunidad(); ?></td>
+                                    <td><?php echo $r->getIdCatProducto(); ?></td>
+                                    <td><?php echo $r->getNombre(); ?></td>
+                                    <td><?php echo $r->getDescripcion(); ?></td>
+                                    <td><?php echo $r->getCantidad(); ?></td>
+                                    <td><?php echo $r->getPreciovSugerido(); ?></td>
                                     <td>
-                                        <a href="editar_rol.php?id_rol=<?php echo $r->getIdRol(); ?>">
-                                            <i class="bi bi-pencil-square" title="Editar rol"></i>
+                                        <a href="editar_productos.php?id_producto=<?php echo $r->getIdProducto(); ?>">
+                                            <i class="bi bi-pencil-square" title="Editar producto"></i>
                                         </a>
                                         &nbsp;&nbsp;
-                                        <a href="rol.php?id_rol=<?php echo $r->getIdRol(); ?>">
-                                            <i class="bi bi-trash3" title="Eliminar rol"></i>
+                                        <a href="opciones.php?id_producto=<?php echo $r->getIdProducto(); ?>">
+                                            <i class="bi bi-trash3" title="Eliminar producto"></i>
                                         </a>
                                     </td>
                                 </tr>
@@ -123,8 +133,8 @@ include("shared/navbar.php");
                         </table>
                     </div>
                 </div>
-                <a href="agregar_rol.php">
-                    <button type="button" class="btn btn-outline-primary">Agregar rol</button>
+                <a href="agregar_productos.php">
+                    <button type="button" class="btn btn-outline-primary">Agregar opciones</button>
                 </a>
             </div>
 
@@ -157,8 +167,8 @@ include("shared/footer.php");
 <script>
     import {DataTable} from "./assets/vendor/simple-datatables/simple-datatables";
 
-    let rolTable = document.querySelector('.rolTable');
-    let dataTable = new DataTable(".rolTable", {
+    let productosTable = document.querySelector('.productosTable');
+    let dataTable = new DataTable(".productosTable", {
         searchable: true,
         fixedHeight: true
     });
