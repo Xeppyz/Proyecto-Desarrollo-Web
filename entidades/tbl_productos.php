@@ -11,67 +11,131 @@ class tbl_productos
     private $preciov_sugerido;
     private $estado;
 
-    public function getIdProducto(){
+    /**
+     * @return mixed
+     */
+    public function getIdProducto()
+    {
         return $this->id_producto;
     }
 
-    public function setIdProducto($id_producto){
+    /**
+     * @param mixed $id_producto
+     */
+    public function setIdProducto($id_producto): void
+    {
         $this->id_producto = $id_producto;
     }
 
-    public function getIdComunidad(){
+    /**
+     * @return mixed
+     */
+    public function getIdComunidad()
+    {
         return $this->id_comunidad;
     }
 
-    public function setIdComunidad($id_comunidad){
+    /**
+     * @param mixed $id_comunidad
+     */
+    public function setIdComunidad($id_comunidad): void
+    {
         $this->id_comunidad = $id_comunidad;
     }
 
-    public function getIdCatProducto(){
+    /**
+     * @return mixed
+     */
+    public function getIdCatProducto()
+    {
         return $this->id_cat_producto;
     }
 
-    public function setIdCatProducto($id_cat_producto){
+    /**
+     * @param mixed $id_cat_producto
+     */
+    public function setIdCatProducto($id_cat_producto): void
+    {
         $this->id_cat_producto = $id_cat_producto;
     }
 
-    public function getNombre(){
+    /**
+     * @return mixed
+     */
+    public function getNombre()
+    {
         return $this->nombre;
     }
 
-    public function setNombre($nombre){
+    /**
+     * @param mixed $nombre
+     */
+    public function setNombre($nombre): void
+    {
         $this->nombre = $nombre;
     }
 
-    public function getDescripcion(){
+    /**
+     * @return mixed
+     */
+    public function getDescripcion()
+    {
         return $this->descripcion;
     }
 
-    public function setDescripcion($descripcion){
+    /**
+     * @param mixed $descripcion
+     */
+    public function setDescripcion($descripcion): void
+    {
         $this->descripcion = $descripcion;
     }
 
-    public function getCantidad(){
+    /**
+     * @return mixed
+     */
+    public function getCantidad()
+    {
         return $this->cantidad;
     }
 
-    public function setCantidad($cantidad){
+    /**
+     * @param mixed $cantidad
+     */
+    public function setCantidad($cantidad): void
+    {
         $this->cantidad = $cantidad;
     }
 
-    public function getPreciovSugerido(){
+    /**
+     * @return mixed
+     */
+    public function getPreciovSugerido()
+    {
         return $this->preciov_sugerido;
     }
 
-    public function setPreciovSugerido($preciov_sugerido){
+    /**
+     * @param mixed $preciov_sugerido
+     */
+    public function setPreciovSugerido($preciov_sugerido): void
+    {
         $this->preciov_sugerido = $preciov_sugerido;
     }
 
-    public function getEstado(){
+    /**
+     * @return mixed
+     */
+    public function getEstado()
+    {
         return $this->estado;
     }
 
-    public function setEstado($estado){
+    /**
+     * @param mixed $estado
+     */
+    public function setEstado($estado): void
+    {
         $this->estado = $estado;
     }
 }

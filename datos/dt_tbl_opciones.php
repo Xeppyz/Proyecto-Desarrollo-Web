@@ -58,7 +58,7 @@ class dt_tbl_opciones extends Conexion
             $r = $stm->fetch(PDO::FETCH_OBJ);
             $to = new tbl_opciones();
 
-            $to->setIdOpciones($r->id_comunidad);
+            $to->setIdOpciones($r->id_opciones);
             $to->setOpcionDescripcion($r->opcion_descripcion);
             $to->setEstado($r->estado);
 

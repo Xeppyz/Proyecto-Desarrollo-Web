@@ -1,15 +1,15 @@
 <?php
-require_once '../entidades/tbl_opciones.php';
-require_once '../datos/dt_tbl_opciones.php';
-require_once '../controladores/opcionesController.php';
+require_once '../entidades/tbl_rol.php';
+require_once '../datos/dt_tbl_rol.php';
+require_once '../controladores/rolController.php';
 
-$to = new tbl_opciones();
-$dto = new dt_tbl_opciones();
-$oc = new opcionesController();
+$tr = new tbl_rol();
+$dtr = new dt_tbl_rol();
+$cc = new rolController();
 
-if (isset($_GET['id_opciones'])) {
-    $id_opciones = $_GET['id_opciones'];
-    $dto->eliminarOpciones($id_opciones);
+if (isset($_GET['id_rol'])) {
+    $id_rol = $_GET['id_rol'];
+    $dtr->eliminarRol($id_rol);
 }
 ?>
 
@@ -77,11 +77,11 @@ include("shared/navbar.php");
 <main id="main" class="main">
 
     <div class="pagetitle">
-        <h1>Opciones</h1>
+        <h1>Comunidades</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#">Seguridad</a></li>
-                <li class="breadcrumb-item">Opciones</li>
+                <li class="breadcrumb-item">Comunidades</li>
 
             </ol>
         </nav>
@@ -92,30 +92,29 @@ include("shared/navbar.php");
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Opciones</h5>
-                        <table class="table opcionesTable">
+                        <h5 class="card-title">Comunidad</h5>
+                        <table class="table rolTable">
                             <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Opcion descripcion</th>
+                                <th>Descripcion</th>
                                 <th>Acción</th>
-
                             </tr>
                             </thead>
                             <tbody>
                             <?php
-                            foreach ($dto->listarOpciones() as $r):
+                            foreach ($dtr->listarRol() as $r):
                                 ?>
                                 <tr>
-                                    <td><?php echo $r->getIdOpciones(); ?></td>
-                                    <td><?php echo $r->getOpcionDescripcion(); ?></td>
+                                    <td><?php echo $r->getIdRol(); ?></td>
+                                    <td><?php echo $r->getRolDescripcion(); ?></td>
                                     <td>
-                                        <a href="editar_opciones.php?id_opciones=<?php echo $r->getIdOpciones(); ?>">
-                                            <i class="bi bi-pencil-square" title="Editar opciones"></i>
+                                        <a href="editar_rol.php?id_rol=<?php echo $r->getIdRol(); ?>">
+                                            <i class="bi bi-pencil-square" title="Editar rol"></i>
                                         </a>
                                         &nbsp;&nbsp;
-                                        <a href="opciones.php?id_opciones=<?php echo $r->getIdOpciones(); ?>">
-                                            <i class="bi bi-trash3" title="Eliminar opciones"></i>
+                                        <a href="rol.php?id_rol=<?php echo $r->getIdRol(); ?>">
+                                            <i class="bi bi-trash3" title="Eliminar rol"></i>
                                         </a>
                                     </td>
                                 </tr>
@@ -124,8 +123,8 @@ include("shared/navbar.php");
                         </table>
                     </div>
                 </div>
-                <a href="agregar_opciones.php">
-                    <button type="button" class="btn btn-outline-primary">Agregar opciones</button>
+                <a href="agregar_rol.php">
+                    <button type="button" class="btn btn-outline-primary">Agregar rol</button>
                 </a>
             </div>
 
@@ -141,7 +140,7 @@ include("shared/footer.php");
 <!-- End Footer -->
 
 <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
-            class="bi bi-arrow-up-short"></i></a>
+        class="bi bi-arrow-up-short"></i></a>
 
 <!-- Vendor JS Files -->
 <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
@@ -158,8 +157,8 @@ include("shared/footer.php");
 <script>
     import {DataTable} from "./assets/vendor/simple-datatables/simple-datatables";
 
-    let opcionesTable = document.querySelector('.opcionesTable');
-    let dataTable = new DataTable(".opcionesTable", {
+    let rolTable = document.querySelector('.rolTable');
+    let dataTable = new DataTable(".rolTable", {
         searchable: true,
         fixedHeight: true
     });

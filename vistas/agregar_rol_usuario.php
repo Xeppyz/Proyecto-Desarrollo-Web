@@ -1,3 +1,37 @@
+<?php
+
+require_once '../entidades/tbl_usuario.php';
+require_once '../entidades/tbl_rol.php';
+require_once '../entidades/vw_usuario_rol.php';
+require_once '../datos/dt_tbl_usuario.php';
+require_once '../datos/dt_tbl_rol.php';
+require_once '../datos/dt_tbl_rol_usuario.php';
+require_once '../controladores/rolUsuarioController.php';
+require_once '../controladores/rolController.php';
+
+$dtu = new dt_tbl_usuario();
+$dtr = new dt_tbl_rol();
+$dtur = new dt_tbl_rol_usuario();
+$varId_usuario = 0;
+if(isset($varId_usuario))
+{
+    $varId_usuario = $_GET['id_usuario'];
+}
+
+$data_usuario = $dtu->mostrarUsuario($varId_usuario);
+$lista_rol = $dtr->listarRol();
+$lista_rol_usuario = $dtur->listarRolUsuario($varId_usuario);
+
+if(isset($_POST['m'])){
+    $metodo = $_POST['m'];
+    if(method_exists("rolUsuarioController",$metodo))
+    {
+        rolUsuarioController::{$metodo}();
+    }
+
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,8 +42,6 @@
     <title>Components / Accordion - NiceAdmin Bootstrap Template</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
-
-    <base href="vistas/">
 
     <!-- Favicons -->
     <link href="assets/img/favicon.png" rel="icon">
@@ -46,7 +78,7 @@
 
     <div class="d-flex align-items-center justify-content-between">
         <a href="#" class="logo d-flex align-items-center">
-            <img src="assets/img/logo2.jpg" alt="">
+            <img src="assets/img/logo.png" alt="">
             <span class="d-none d-lg-block">NiceAdmin</span>
         </a>
         <i class="bi bi-list toggle-sidebar-btn"></i>
@@ -212,13 +244,13 @@
             <li class="nav-item dropdown pe-3">
 
                 <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                    <img src="assets/img/logo2.jpg" alt="Profile" class="rounded-circle">
-                    <span class="d-none d-md-block dropdown-toggle ps-2">Neo Tech</span>
+                    <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+                    <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
                 </a><!-- End Profile Iamge Icon -->
 
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                     <li class="dropdown-header">
-                        <h6>Neo Tech</h6>
+                        <h6>Kevin Anderson</h6>
                         <span>Web Designer</span>
                     </li>
                     <li>
@@ -226,7 +258,7 @@
                     </li>
 
                     <li>
-                        <a class="dropdown-item d-flex align-items-center" href="users-profile.php">
+                        <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
                             <i class="bi bi-person"></i>
                             <span>My Profile</span>
                         </a>
@@ -279,39 +311,70 @@ include("shared/navbar.php");
 <main id="main" class="main">
 
     <div class="pagetitle">
-        <h1>Proyecto Kermesse By Neo Tech</h1>
+        <h1>Agregar Rol a Usuario</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item">Pages</li>
-                <li class="breadcrumb-item active">Blank</li>
+                <li class="breadcrumb-item">Seguridad</li>
+                <li class="breadcrumb-item active">Agregar Rol a Usuario</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
 
     <section class="section">
         <div class="row">
-            <div class="col-lg-6">
+            <div class="col-lg-12">
 
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Example Card</h5>
-                        <p>This is an examle page with no contrnt. You can use it as a starter for your custom pages.</p>
+                        <h5 class="card-title">Lista de Roles</h5>
+                        <h4 class="card-title"><?php echo $data_usuario->getNombres() . " ". $data_usuario->getApellidos(); ?></h4>
+
+                        <form action="" method="post">
+                            <div class="row mb-3 mt-3">
+                                <input type="hidden" name="id_usuario" value="<?php echo $data_usuario->getIdUsuario(); ?>">
+                                <label class="col-sm-2">Seleccionar Rol:</label>
+                                <select class="col-sm-10" name="id_rol" id="">
+                                    <option value="0">SELECCIONE</option>
+                                    <?php
+                                    foreach ($lista_rol as $rol):
+                                        ?>
+                                        <option value="<?php echo $rol->getIdRol(); ?>"><?php echo $rol->getRolDescripcion(); ?></option>
+                                    <?php endforeach; ?>
+
+                                </select>
+                            </div>
+                            <div class="col-sm-10 mb-4">
+                                <button type="submit" id="rol" class="btn btn-primary">Asignar rol</button>
+                                <input type="hidden" name="m" value="asignarUsuarioRol">
+                            </div>
+
+                        </form>
+
+                        <table class="table usuariosTable">
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Descripcion</th>
+                                <th>Acción</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <?php
+                            foreach($lista_rol_usuario as $data):
+                                ?>
+                                <tr>
+                                    <td><?php echo $data->getIdRol(); ?></td>
+                                    <td><?php echo $data->getRolDescripcion(); ?></td>
+                                </tr>
+                            <?php endforeach; ?>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
 
             </div>
 
-            <div class="col-lg-6">
-
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Example Card</h5>
-                        <p>This is an examle page with no contrnt. You can use it as a starter for your custom pages.</p>
-                    </div>
-                </div>
-
-            </div>
         </div>
     </section>
 
@@ -334,6 +397,11 @@ include("shared/footer.php");
 <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
 <script src="assets/vendor/tinymce/tinymce.min.js"></script>
 <script src="assets/vendor/php-email-form/validate.js"></script>
+<script>
+    document.getElementById("boton").addEventListener("click", function(e){
+        e.preventDefault();
+    })
+</script>
 
 <!-- Template Main JS File -->
 <script src="assets/js/main.js"></script>

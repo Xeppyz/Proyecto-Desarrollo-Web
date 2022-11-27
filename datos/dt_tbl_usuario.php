@@ -120,4 +120,3 @@ class dt_tbl_usuario extends Conexion
     }
 }
 
-?>

@@ -4,11 +4,21 @@ require_once '../entidades/tbl_parroquia.php';
 require_once '../datos/dt_tbl_parroquia.php';
 require_once '../controladores/parroquiaControllerr.php';
 
+$dtu = new dt_tbl_parroquia();
+
+$varId_parroquia = 0;
+if (isset($varId_parroquia)) {
+    $varId_parroquia = $_GET['idParroquia'];
+}
+
+$data_parroquia = $dtu->mostrarParroquia($varId_parroquia);
+
 if (isset($_POST['m'])) {
     $metodo = $_POST['m'];
     if (method_exists("parroquiaController", $metodo)) {
         parroquiaController::{$metodo}();
     }
+
 }
 ?>
 
@@ -60,11 +70,12 @@ if (isset($_POST['m'])) {
 
     <div class="d-flex align-items-center justify-content-between">
         <a href="#" class="logo d-flex align-items-center">
-            <img src="assets/img/logo2.jpg" alt="">
+            <img src="assets/img/logo.png" alt="">
             <span class="d-none d-lg-block">NiceAdmin</span>
         </a>
         <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
+
 </header><!-- End Header -->
 
 <!-- ======= Sidebar ======= -->
@@ -76,28 +87,32 @@ include("shared/navbar.php");
 <main id="main" class="main">
 
     <div class="pagetitle">
-        <h1>Agregar Parroquia</h1>
+        <h1>Editar Parroquia</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#">Home</a></li>
                 <li class="breadcrumb-item">Pages</li>
-                <li class="breadcrumb-item active">Agregar Parroquia</li>
+                <li class="breadcrumb-item active">Editar Parroquia</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
+
     <section class="section">
-        <!-- Formulario para agregar Parroquia-->
+        <!-- Formulario para editar Parroquia-->
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">Agregar datos de la Parroquia</h5>
+                <h5 class="card-title">Editar Parroquia</h5>
 
                 <!-- Floating Labels Form -->
                 <form class="row g-3 needs-validation" novalidate method="POST">
                     <div class="col-md-12">
                         <input type="hidden" value="guardar" name="txtaccion"/>
                         <div class="form-floating">
+                            <input type="hidden" value="<?php echo $data_parroquia->getIdParroquia(); ?>"
+                                   name="idParroquia"/>
                             <input type="text" class="form-control" id="validationCustom01" id="floatingName"
-                                   placeholder="Your Name" name="nombre" required>
+                                   name="nombre"
+                                   value="<?php echo $data_parroquia->getNombre(); ?>" required>
                             <label for="floatingName" id="validationCustom01">Nombre</label>
                             <div class="valid-feedback">
 
@@ -110,7 +125,7 @@ include("shared/navbar.php");
                     <div class="col-md-12">
                         <div class="form-floating">
                             <input type="text" class="form-control" id="validationCustom02" id="floatingName"
-                                   placeholder="Your Name" name="direccion" required>
+                                   name="direccion" value="<?php echo $data_parroquia->getDireccion(); ?>" required>
                             <label for="floatingName" id="validationCustom02">Direccion</label>
                             <div class="valid-feedback">
 
@@ -123,7 +138,7 @@ include("shared/navbar.php");
                     <div class="col-md-12">
                         <div class="form-floating">
                             <input type="text" class="form-control" id="validationCustom03" id="floatingName"
-                                   placeholder="Your Name" name="telefono" required>
+                                   name="telefono" value="<?php echo $data_parroquia->getTelefono(); ?>" required>
                             <label for="floatingName" id="validationCustom03">Teléfono</label>
                             <div class="valid-feedback">
 
@@ -136,7 +151,7 @@ include("shared/navbar.php");
                     <div class="col-md-6">
                         <div class="form-floating">
                             <input type="text" class="form-control" id="validationCustom05" id="floatingPassword"
-                                   placeholder="Password" name="parroco" required>
+                                   name="parroco" value="<?php echo $data_parroquia->getParroco(); ?>" required>
                             <label for="floatingPassword" id="validationCustom05">Parroco</label>
                             <div class="valid-feedback">
 
@@ -149,8 +164,8 @@ include("shared/navbar.php");
                     <div class="col-md-6">
                         <div class="form-floating">
                             <input type="text" class="form-control" id="validationCustom5" id="floatingName"
-                                   placeholder="Your URL" name="sitio_web" required>
-                            <span class="input-group-text" id="basic-addon3">https://independientesantafe.com//</span>
+                                   name="sitio_web" value="<?php echo $data_parroquia->getSitioWeb(); ?>" required>
+                            <span class="input-group-text" id="basic-addon3">https://example.com/users/</span>
                             <label for="floatingName" id="validationCustom5">Sitio Web de la Parroquia</label>
                             <div class="valid-feedback">
 
@@ -163,7 +178,8 @@ include("shared/navbar.php");
                     <div class="col-md-6">
                         <div class="form-floating">
                             <div class="col-sm-10">
-                                <input id="validationCustom6" class="form-control" type="file" name="file" required/>
+                                <input id="validationCustom6" class="form-control" type="file" name="file"
+                                       value="<?php echo $data_parroquia->getSitioWeb(); ?>" required/>
 
                                 <span class="input-group-text" id="basic-addon3">Logo de La Parroquia</span>
                                 <div class="valid-feedback">
@@ -176,13 +192,13 @@ include("shared/navbar.php");
                         </div>
                     </div>
                     <div class="text-center">
-                        <button type="submit" class="btn btn-outline-primary">Agregar Parroquia</button>
-                        <input type="hidden" name="m" value="guardarParroquia">
-                        <button type="button" class="btn btn-outline-secondary">Cancelar</button>
+                        <button type="submit" class="btn btn-outline-primary">Editar Parroquia</button>
+                        <input type="hidden" name="m" value="editarParroquia">
+                        <button type="submit" href="parroquia.php" class="btn btn-outline-secondary">Cancelar</button>
+                        <input type="hidden" value="enviar" onclick="location='/vistas/parroquia.php'"/>
                     </div>
                 </form><!-- End floating Labels Form -->
     </section>
-
 </main><!-- End #main -->
 
 <!-- ======= Footer ======= -->

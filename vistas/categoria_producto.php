@@ -1,15 +1,15 @@
 <?php
-require_once '../entidades/tbl_opciones.php';
-require_once '../datos/dt_tbl_opciones.php';
-require_once '../controladores/opcionesController.php';
+require_once '../entidades/tbl_categoria_producto.php';
+require_once '../datos/dt_tbl_categoria_producto.php';
+require_once '../controladores/categoriaProductoController.php';
 
-$to = new tbl_opciones();
-$dto = new dt_tbl_opciones();
-$oc = new opcionesController();
+$tcp = new tbl_categoria_producto();
+$dtcp = new dt_tbl_categoria_producto();
+$cpc = new categoriaProductoController();
 
-if (isset($_GET['id_opciones'])) {
-    $id_opciones = $_GET['id_opciones'];
-    $dto->eliminarOpciones($id_opciones);
+if (isset($_GET['id_categoria_producto'])) {
+    $id_categoria_producto = $_GET['id_categoria_producto'];
+    $dtcp->eliminarCategoriaProducto($id_categoria_producto);
 }
 ?>
 
@@ -77,11 +77,11 @@ include("shared/navbar.php");
 <main id="main" class="main">
 
     <div class="pagetitle">
-        <h1>Opciones</h1>
+        <h1>Categoria productos</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#">Seguridad</a></li>
-                <li class="breadcrumb-item">Opciones</li>
+                <li class="breadcrumb-item">Categoria productos</li>
 
             </ol>
         </nav>
@@ -92,30 +92,31 @@ include("shared/navbar.php");
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Opciones</h5>
-                        <table class="table opcionesTable">
+                        <h5 class="card-title">Categoria producto</h5>
+                        <table class="table categoria_productoTable">
                             <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Opcion descripcion</th>
-                                <th>Acción</th>
-
+                                <th>Nombre</th>
+                                <th>Descripcion</th>
+                                <th>Accion</th>
                             </tr>
                             </thead>
                             <tbody>
                             <?php
-                            foreach ($dto->listarOpciones() as $r):
+                            foreach ($dtcp->listarCategoriaProducto() as $r):
                                 ?>
                                 <tr>
-                                    <td><?php echo $r->getIdOpciones(); ?></td>
-                                    <td><?php echo $r->getOpcionDescripcion(); ?></td>
+                                    <td><?php echo $r->getIdCategoriaProducto(); ?></td>
+                                    <td><?php echo $r->getNombre(); ?></td>
+                                    <td><?php echo $r->getDescripcion(); ?></td>
                                     <td>
-                                        <a href="editar_opciones.php?id_opciones=<?php echo $r->getIdOpciones(); ?>">
-                                            <i class="bi bi-pencil-square" title="Editar opciones"></i>
+                                        <a href="editar_categoria_producto.php?id_categoria_producto=<?php echo $r->getIdCategoriaProducto(); ?>">
+                                            <i class="bi bi-pencil-square" title="Editar categoria producto"></i>
                                         </a>
                                         &nbsp;&nbsp;
-                                        <a href="opciones.php?id_opciones=<?php echo $r->getIdOpciones(); ?>">
-                                            <i class="bi bi-trash3" title="Eliminar opciones"></i>
+                                        <a href="categoria_producto.php?id_categoria_producto=<?php echo $r->getIdCategoriaProducto(); ?>">
+                                            <i class="bi bi-trash3" title="Editar categoria producto"></i>
                                         </a>
                                     </td>
                                 </tr>
@@ -124,8 +125,8 @@ include("shared/navbar.php");
                         </table>
                     </div>
                 </div>
-                <a href="agregar_opciones.php">
-                    <button type="button" class="btn btn-outline-primary">Agregar opciones</button>
+                <a href="agregar_categoria_producto.php">
+                    <button type="button" class="btn btn-outline-primary">Agregar categoria producto</button>
                 </a>
             </div>
 
@@ -158,8 +159,8 @@ include("shared/footer.php");
 <script>
     import {DataTable} from "./assets/vendor/simple-datatables/simple-datatables";
 
-    let opcionesTable = document.querySelector('.opcionesTable');
-    let dataTable = new DataTable(".opcionesTable", {
+    let categoria_productoTable = document.querySelector('.categoria_productoTable');
+    let dataTable = new DataTable(".categoria_productoTable", {
         searchable: true,
         fixedHeight: true
     });

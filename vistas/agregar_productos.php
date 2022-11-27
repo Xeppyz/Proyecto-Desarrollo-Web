@@ -1,15 +1,15 @@
 <?php
-require_once '../entidades/tbl_opciones.php';
-require_once '../datos/dt_tbl_opciones.php';
-require_once '../controladores/opcionesController.php';
 
-$to = new tbl_opciones();
-$dto = new dt_tbl_opciones();
-$oc = new opcionesController();
+require_once '../entidades/tbl_productos.php';
+require_once '../datos/dt_tbl_productos.php';
+require_once '../controladores/productosController.php';
 
-if (isset($_GET['id_opciones'])) {
-    $id_opciones = $_GET['id_opciones'];
-    $dto->eliminarOpciones($id_opciones);
+
+if (isset($_POST['m'])) {
+    $metodo = $_POST['m'];
+    if (method_exists("productosController", $metodo)) {
+        productosController::{$metodo}();
+    }
 }
 ?>
 
@@ -20,7 +20,7 @@ if (isset($_GET['id_opciones'])) {
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Kermesse - Lista de Comunidades</title>
+    <title>Components / Accordion - NiceAdmin Bootstrap Template</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -60,12 +60,11 @@ if (isset($_GET['id_opciones'])) {
 
     <div class="d-flex align-items-center justify-content-between">
         <a href="#" class="logo d-flex align-items-center">
-            <img src="assets/img/logo2.jpg" alt="">
+            <img src="assets/img/logo.png" alt="">
             <span class="d-none d-lg-block">NiceAdmin</span>
         </a>
         <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
-
 </header><!-- End Header -->
 
 <!-- ======= Sidebar ======= -->
@@ -77,12 +76,12 @@ include("shared/navbar.php");
 <main id="main" class="main">
 
     <div class="pagetitle">
-        <h1>Opciones</h1>
+        <h1>Agregar opciones</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">Seguridad</a></li>
-                <li class="breadcrumb-item">Opciones</li>
-
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item">Seguridad</li>
+                <li class="breadcrumb-item active">Agregar opciones</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -90,45 +89,57 @@ include("shared/navbar.php");
     <section class="section">
         <div class="row">
             <div class="col-lg-12">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Opciones</h5>
-                        <table class="table opcionesTable">
-                            <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Opcion descripcion</th>
-                                <th>Acción</th>
+                <form action="" method="POST">
 
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <?php
-                            foreach ($dto->listarOpciones() as $r):
-                                ?>
-                                <tr>
-                                    <td><?php echo $r->getIdOpciones(); ?></td>
-                                    <td><?php echo $r->getOpcionDescripcion(); ?></td>
-                                    <td>
-                                        <a href="editar_opciones.php?id_opciones=<?php echo $r->getIdOpciones(); ?>">
-                                            <i class="bi bi-pencil-square" title="Editar opciones"></i>
-                                        </a>
-                                        &nbsp;&nbsp;
-                                        <a href="opciones.php?id_opciones=<?php echo $r->getIdOpciones(); ?>">
-                                            <i class="bi bi-trash3" title="Eliminar opciones"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                            <?php endforeach; ?>
-                            </tbody>
-                        </table>
+                    <div class="row mb-3">
+                        <input type="hidden" value="guardar" name="txtaccion"/>
+
+
+                        <label class="col-sm-2 col-form-table"> ID Comunidad:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="id_comunidad"/>
+                        </div>
                     </div>
-                </div>
-                <a href="agregar_opciones.php">
-                    <button type="button" class="btn btn-outline-primary">Agregar opciones</button>
-                </a>
-            </div>
+                    <div class="row mb-3">
+                        <label class="col-sm-2 col-form-table">Id Cat.Producto:</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="id_cat_producto" class="form-control"/>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label class="col-sm-2 col-form-table">Nombre:</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="nombre" class="form-control"/>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label class="col-sm-2 col-form-table">Descripcion:</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="descripcion" class="form-control"/>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label class="col-sm-2 col-form-table">Cantidad:</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="cantidad" class="form-control"/>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label class="col-sm-2 col-form-table">Precio sugerido:</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="preciov_sugerido" class="form-control"/>
+                        </div>
+                    </div>
 
+                    <div class="row mb-3">
+
+                        <div class="col-sm-10">
+                            <button type="submit" class="btn btn-primary">Guardar productos</button>
+                            <input type="hidden" name="m" value="guardarProducto">
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
     </section>
 
@@ -155,15 +166,6 @@ include("shared/footer.php");
 
 <!-- Template Main JS File -->
 <script src="assets/js/main.js"></script>
-<script>
-    import {DataTable} from "./assets/vendor/simple-datatables/simple-datatables";
-
-    let opcionesTable = document.querySelector('.opcionesTable');
-    let dataTable = new DataTable(".opcionesTable", {
-        searchable: true,
-        fixedHeight: true
-    });
-</script>
 
 </body>
 

@@ -40,8 +40,18 @@
                     </a>
                 </li>
                 <li>
+                    <a href="agregar_parroquia.php">
+                        <i class="bi bi-circle"></i><span>Agregar Parroquia</span>
+                    </a>
+                </li>
+                <li>
                     <a href="opciones.php">
                         <i class="bi bi-circle"></i><span>Opciones</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="categoria_producto.php">
+                        <i class="bi bi-circle"></i><span>Categoria producto</span>
                     </a>
                 </li>
 

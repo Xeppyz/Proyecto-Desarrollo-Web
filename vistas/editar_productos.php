@@ -1,15 +1,26 @@
 <?php
 
-require_once '../entidades/tbl_comunidad.php';
-require_once '../datos/dt_tbl_comunidad.php';
-require_once '../controladores/comunidadController.php';
+require_once '../entidades/tbl_productos.php';
+require_once '../datos/dt_tbl_productos.php';
+require_once '../controladores/productosController.php';
 
+$dtp = new dt_tbl_productos();
 
-if (isset($_POST['m'])) {
+$Id = 0;
+if(isset($Id))
+{
+    $Id = $_GET['id_producto'];
+}
+
+$data_producto = $dtp->mostrarProducto($Id);
+
+if(isset($_POST['m'])){
     $metodo = $_POST['m'];
-    if (method_exists("comunidadController", $metodo)) {
-        comunidadController::{$metodo}();
+    if(method_exists("productosController",$metodo))
+    {
+        productosController::{$metodo}();
     }
+
 }
 ?>
 
@@ -30,8 +41,7 @@ if (isset($_POST['m'])) {
 
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
-          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
     <!-- Vendor CSS Files -->
     <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -65,7 +75,6 @@ if (isset($_POST['m'])) {
         </a>
         <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
-
 </header><!-- End Header -->
 
 <!-- ======= Sidebar ======= -->
@@ -77,12 +86,12 @@ include("shared/navbar.php");
 <main id="main" class="main">
 
     <div class="pagetitle">
-        <h1>Agregar Usuario</h1>
+        <h1>Editar producto</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#">Home</a></li>
                 <li class="breadcrumb-item">Seguridad</li>
-                <li class="breadcrumb-item active">Agregar Usuario</li>
+                <li class="breadcrumb-item active">Editar producto</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -92,29 +101,54 @@ include("shared/navbar.php");
             <div class="col-lg-12">
                 <form action="" method="POST">
                     <div class="row mb-3">
-                        <input type="hidden" value="guardar" name="txtaccion"/>
-                        <label class="col-sm-2 col-form-table">Nombre:</label>
+                        <input type="hidden" value="<?php echo $data_producto->getIdProducto(); ?>" name="id_producto"/>
+
+                        <label class="col-sm-2 col-form-table">ID Comunidad:</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="nombre"/>
+                            <input type="text" class="form-control" name="id_comunidad" value="<?php echo $data_producto->getIdComunidad();?>" />
                         </div>
-                    </div>
-                    <div class="row mb-3">
-                        <label class="col-sm-2 col-form-table">Responsable:</label>
-                        <div class="col-sm-10">
-                            <input type="text" name="responsable" class="form-control"/>
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <label class="col-sm-2 col-form-table">Descripcion responsable:</label>
-                        <div class="col-sm-10">
-                            <input type="text" name="desc_contribucion" class="form-control"/>
-                        </div>
+
                     </div>
                     <div class="row mb-3">
 
+                        <label class="col-sm-2 col-form-table">ID Cat.Producto :</label>
                         <div class="col-sm-10">
-                            <button type="submit" class="btn btn-primary">Guardar comunidad</button>
-                            <input type="hidden" name="m" value="guardarComunidad">
+                            <input type="text" name="id_cat_producto" class="form-control" value="<?php echo $data_producto->getIdCatProducto(); ?>" />
+                        </div>
+
+                    </div>
+                    <div class="row mb-3">
+                        <label class="col-sm-2 col-form-table">Nombre:</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="nombre" class="form-control" value="<?php echo $data_producto->getNombre(); ?>" />
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label class="col-sm-2 col-form-table">Descripcion:</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="descripcion" class="form-control" value="<?php echo $data_producto->getDescripcion(); ?>" />
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label class="col-sm-2 col-form-table">Cantidad:</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="cantidad" class="form-control" value="<?php echo $data_producto->getCantidad(); ?>" />
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label class="col-sm-2 col-form-table">Precio sugerido:</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="preciov_sugerido" class="form-control" value="<?php echo $data_producto->getPreciovSugerido(); ?>" />
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-sm-10">
+                            <button type="submit" class="btn btn-primary">Actualizar producto</button>
+                            <input type="hidden" name="m" value="editarProducto">
                         </div>
                     </div>
                 </form>
@@ -130,8 +164,7 @@ include("shared/footer.php");
 ?>
 <!-- End Footer -->
 
-<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
-            class="bi bi-arrow-up-short"></i></a>
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
 <!-- Vendor JS Files -->
 <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
