@@ -23,7 +23,7 @@ class dt_tbl_productos extends Conexion
                 $tp->setNombre($r->nombre);
                 $tp->setDescripcion($r->descripcion);
                 $tp->setCantidad($r->cantidad);
-                $tp->setPreciovSugerido($r->precio_segurido);
+                $tp->setPreciovSugerido($r->preciov_segurido);
                 $tp->setEstado($r->estado);
 
                 $result[] = $tp;
@@ -85,6 +85,31 @@ class dt_tbl_productos extends Conexion
                 $id_producto
             ));
 
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
+    }
+
+    public function mostrarProducto($id)
+    {
+        try {
+            $sql = "SELECT * FROM tbl_productos where estado<>3 and id_producto=?;";
+            $stm = $this->conectar()->prepare($sql);
+            $stm->execute(array($id));
+
+            $r = $stm->fetch(PDO::FETCH_OBJ);
+            $tp = new tbl_productos();
+
+            $tp->setIdProducto($r->id_producto);
+            $tp->setIdComunidad($r->id_comunidad);
+            $tp->setIdCatProducto($r->id_cat_producto);
+            $tp->setNombre($r->nombre);
+            $tp->setDescripcion($r->descripcion);
+            $tp->setCantidad($r->cantidad);
+            $tp->setPreciovSugerido($r->preciov_sugerido);
+            $tp->setEstado($r->estado);
+
+            return $tp;
         } catch (Exception $e) {
             die($e->getMessage());
         }
