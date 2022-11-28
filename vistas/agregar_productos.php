@@ -127,7 +127,7 @@ include("shared/navbar.php");
                     <div class="row mb-3">
                         <label class="col-sm-2 col-form-table">Precio sugerido:</label>
                         <div class="col-sm-10">
-                            <input type="text" name="preciov_sugerido" class="form-control"/>
+                            <input type="number" name="preciov_sugerido" class="form-control"/>
                         </div>
                     </div>
 
