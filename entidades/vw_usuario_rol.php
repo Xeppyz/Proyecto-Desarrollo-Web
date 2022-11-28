@@ -11,8 +11,6 @@ class vw_usuario_rol
     private $rol_descripcion;
     private $id_rol;
 
-
-
     public function getIdRolUsuario()
     {
         return $this->id_rol_usuario;

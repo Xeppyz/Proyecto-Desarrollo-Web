@@ -6,7 +6,7 @@ class rolUsuarioController{
     private $dt_usuario;
 
     public function __construct(){
-        $this->dt_usuario = new DT_tbl_usuario();
+        $this->dt_usuario = new dt_tbl_usuario();
     }
     public static function asignarUsuarioRol(){
         try
