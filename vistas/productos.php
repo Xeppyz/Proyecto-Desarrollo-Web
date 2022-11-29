@@ -123,7 +123,7 @@ include("shared/navbar.php");
                                             <i class="bi bi-pencil-square" title="Editar producto"></i>
                                         </a>
                                         &nbsp;&nbsp;
-                                        <a href="opciones.php?id_producto=<?php echo $r->getIdProducto(); ?>">
+                                        <a href="productos.php?id_producto=<?php echo $r->getIdProducto(); ?>">
                                             <i class="bi bi-trash3" title="Eliminar producto"></i>
                                         </a>
                                     </td>
@@ -134,7 +134,7 @@ include("shared/navbar.php");
                     </div>
                 </div>
                 <a href="agregar_productos.php">
-                    <button type="button" class="btn btn-outline-primary">Agregar opciones</button>
+                    <button type="button" class="btn btn-outline-primary">Agregar producto</button>
                 </a>
             </div>
 

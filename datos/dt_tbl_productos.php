@@ -23,7 +23,7 @@ class dt_tbl_productos extends Conexion
                 $tp->setNombre($r->nombre);
                 $tp->setDescripcion($r->descripcion);
                 $tp->setCantidad($r->cantidad);
-                $tp->setPreciovSugerido($r->preciov_segurido);
+                $tp->setPreciovSugerido($r->preciov_sugerido);
                 $tp->setEstado($r->estado);
 
                 $result[] = $tp;
