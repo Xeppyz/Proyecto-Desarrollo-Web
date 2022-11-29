@@ -80,7 +80,7 @@ class usuarioController{
 
             $dtu = new dt_tbl_usuario();
 
-            $dtu->editarUsuario($id);
+            $dtu->eliminarUsuario($id);
 
             header("Location: usuario.php");
         }
