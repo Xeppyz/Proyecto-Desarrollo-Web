@@ -24,7 +24,6 @@ class dt_tbl_kermesse extends Conexion
                 $tk->setfInicio($r->fInicio);
                 $tk->setfFinal($r->fFinal);
                 $tk->setDescripcion($r->descripcion);
-                $tk->setEstado($r->estado);
                 $tk->setUsuarioCreacion($r->usuario_creacion);
                 $tk->setFechaCreacion($r->fecha_creacion);
                 $tk->setUsuarioModificacion($r->usuario_modificacion);
@@ -42,20 +41,18 @@ class dt_tbl_kermesse extends Conexion
 
     public function guardarKermesse(tbl_kermesse $tk)
     {
+        $date = date('Y-m-d H:i:s');
+
         try {
-            $sql = "INSERT INTO tbl_kermesse (id_parroquia, nombre, fInicio, fFinal, descripcion, estado, usuario_creacion, fecha_creacion, usuario_modificacion, fecha_modificacion, usuario_eliminacion, fecha_eliminacion) VALUES (?,?,?,?,?,1,?,?,?,?,?,?)";
+            $sql = "INSERT INTO tbl_kermesse (id_parroquia, nombre, fInicio, fFinal, descripcion, estado, 
+                          usuario_creacion, fecha_creacion) VALUES (?,?,?,?,?,1,1,?)";
             $query = $this->conectar()->prepare($sql)->execute(array(
                 $tk->getIdParroquia(),
                 $tk->getNombre(),
                 $tk->getfInicio(),
                 $tk->getfFinal(),
                 $tk->getDescripcion(),
-                $tk->getUsuarioCreacion(),
-                $tk->getFechaCreacion(),
-                $tk->getUsuarioModificacion(),
-                $tk->getFechaModificacion(),
-                $tk->getUsuarioEliminacion(),
-                $tk->getFechaEliminacion(),
+                $date
             ));
             var_dump($query);
         } catch (Exception $e) {
@@ -95,8 +92,10 @@ class dt_tbl_kermesse extends Conexion
 
     public function editarKermesse(tbl_kermesse $tk)
     {
+        $date = date('Y-m-d H:i:s');
+
         try {
-            $sql = $sql = "UPDATE tbl_kermesse SET idParroquia = ?, nombre = ?, fInicio = ?,  fFinal = ?, descripcion = ?, estado = 2, usuario_modificacion = ?, fecha_modificacion = ? WHERE id_kermesse = ?";
+            $sql = $sql = "UPDATE tbl_kermesse SET idParroquia = ?, nombre = ?, fInicio = ?,  fFinal = ?, descripcion = ?, estado = 2, usuario_modificacion = 1, fecha_modificacion = ? WHERE id_kermesse = ?";
             $query = $this->conectar()->prepare($sql);
 
             $query->execute(array(
@@ -105,8 +104,8 @@ class dt_tbl_kermesse extends Conexion
                 $tk->getfInicio(),
                 $tk->getfFinal(),
                 $tk->getDescripcion(),
-                $tk->getUsuarioModificacion(),
-                $tk->getFechaModificacion()
+                $date,
+                $tk->getIdKermesse()
             ));
 
         } catch (Exception $e) {
@@ -116,23 +115,18 @@ class dt_tbl_kermesse extends Conexion
 
     public function eliminarKermesse($id_kermesse)
     {
-        try
-        {
-            $sql = "UPDATE tbl_kermesse SET estado = 3 where id_kermesse = ?";
+        $date = date('Y-m-d H:i:s');
+
+        try {
+            $sql = "UPDATE tbl_kermesse SET estado = 3, usuario_eliminacion = 1, fecha_eliminacion = ? where id_kermesse = ?";
             $query = $this->conectar()->prepare($sql);
 
-            //  En el update tambien debe ir incluido
-            //  UsuarioEliminacion
-            //  FechaEliminacion, pero hay que poner la fecha de hoy en que se hizo esto xd.
-            // https://stackoverflow.com/questions/9541029/insert-current-date-in-datetime-format-mysql
-
             $query->execute(array(
+                $date,
                 $id_kermesse
             ));
 
-        }
-        catch (Exception $e)
-        {
+        } catch (Exception $e) {
             die($e->getMessage());
         }
     }

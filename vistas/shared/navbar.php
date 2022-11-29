@@ -25,6 +25,11 @@
                     </a>
                 </li>
                 <li>
+                    <a href="kermesse.php">
+                        <i class="bi bi-circle"></i><span>Kermesse</span>
+                    </a>
+                </li>
+                <li>
                     <a href="comunidad.php">
                         <i class="bi bi-circle"></i><span>Comunidades</span>
                     </a>
@@ -54,7 +59,6 @@
                         <i class="bi bi-circle"></i><span>Categoria producto</span>
                     </a>
                 </li>
-
             </ul>
         </li><!-- End Components Nav -->
 
