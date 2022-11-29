@@ -1,15 +1,26 @@
 <?php
 
-require_once '../entidades/tbl_productos.php';
-require_once '../datos/dt_tbl_productos.php';
-require_once '../controladores/productosController.php';
+require_once '../entidades/tbl_kermesse.php';
+require_once '../datos/dt_tbl_kermesse.php';
+require_once '../controladores/kermesseController.php';
 
+$dtk = new dt_tbl_kermesse();
 
-if (isset($_POST['m'])) {
+$id_kermesse = 0;
+if(isset($id_kermesse))
+{
+    $id_kermesse = $_GET['id_kermesse'];
+}
+
+$data_kermesse = $dtk->mostrarKermesse($id_kermesse);
+
+if(isset($_POST['m'])){
     $metodo = $_POST['m'];
-    if (method_exists("productosController", $metodo)) {
-        productosController::{$metodo}();
+    if(method_exists("kermesseController",$metodo))
+    {
+        kermesseController::{$metodo}();
     }
+
 }
 ?>
 
@@ -30,8 +41,7 @@ if (isset($_POST['m'])) {
 
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
-          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
     <!-- Vendor CSS Files -->
     <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -76,12 +86,12 @@ include("shared/navbar.php");
 <main id="main" class="main">
 
     <div class="pagetitle">
-        <h1>Agregar Producto</h1>
+        <h1>Editar kermesse</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#">Home</a></li>
                 <li class="breadcrumb-item">Seguridad</li>
-                <li class="breadcrumb-item active">Agregar productos</li>
+                <li class="breadcrumb-item active">Editar kermesse</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -90,52 +100,44 @@ include("shared/navbar.php");
         <div class="row">
             <div class="col-lg-12">
                 <form action="" method="POST">
-
                     <div class="row mb-3">
-                        <input type="hidden" value="guardar" name="txtaccion"/>
+                        <input type="hidden" value="<?php echo $data_kermesse->getIdKermesse(); ?>" name="id_kermesse" />
 
 
-                        <label class="col-sm-2 col-form-table"> ID Comunidad:</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" name="id_comunidad"/>
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <label class="col-sm-2 col-form-table">Id Cat.Producto:</label>
-                        <div class="col-sm-10">
-                            <input type="text" name="id_cat_producto" class="form-control"/>
-                        </div>
-                    </div>
-                    <div class="row mb-3">
+                        <!-- Quitar actualizar parroquia de los dttable y controller  -->
                         <label class="col-sm-2 col-form-table">Nombre:</label>
                         <div class="col-sm-10">
-                            <input type="text" name="nombre" class="form-control"/>
+                            <input type="text" name="nombre" class="form-control" value="<?php echo $data_kermesse->getNombre(); ?>" />
+                        </div>
+
+                    </div>
+                  
+                    <div class="row mb-3">
+                        <label class="col-sm-2 col-form-table">Fecha de inicio:</label>
+                        <div class="col-sm-10">
+                            <input type="date" name="fInicio" class="form-control" value="<?php echo $data_kermesse->getfInicio(); ?>" />
                         </div>
                     </div>
+
+                    <div class="row mb-3">
+                        <label class="col-sm-2 col-form-table">Fecha final:</label>
+                        <div class="col-sm-10">
+                            <input type="date" name="fFinal" class="form-control" value="<?php echo $data_kermesse->getfFinal(); ?>" />
+                        </div>
+                    </div>
+
                     <div class="row mb-3">
                         <label class="col-sm-2 col-form-table">Descripcion:</label>
                         <div class="col-sm-10">
-                            <input type="text" name="descripcion" class="form-control"/>
+                            <input type="text" name="descripcion" class="form-control" value="<?php echo $data_kermesse->getDescripcion(); ?>" />
                         </div>
                     </div>
-                    <div class="row mb-3">
-                        <label class="col-sm-2 col-form-table">Cantidad:</label>
-                        <div class="col-sm-10">
-                            <input type="text" name="cantidad" class="form-control"/>
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <label class="col-sm-2 col-form-table">Precio sugerido:</label>
-                        <div class="col-sm-10">
-                            <input type="number" name="preciov_sugerido" class="form-control"/>
-                        </div>
-                    </div>
+                    
 
                     <div class="row mb-3">
-
                         <div class="col-sm-10">
-                            <button type="submit" class="btn btn-primary">Guardar productos</button>
-                            <input type="hidden" name="m" value="guardarProducto">
+                            <button type="submit" class="btn btn-primary">Actualizar kermesse</button>
+                            <input type="hidden" name="m" value="editarKermesse">
                         </div>
                     </div>
                 </form>
@@ -151,8 +153,7 @@ include("shared/footer.php");
 ?>
 <!-- End Footer -->
 
-<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
-            class="bi bi-arrow-up-short"></i></a>
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
 <!-- Vendor JS Files -->
 <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>

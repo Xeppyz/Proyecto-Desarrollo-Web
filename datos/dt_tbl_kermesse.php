@@ -19,7 +19,7 @@ class dt_tbl_kermesse extends Conexion
                 $tk = new tbl_kermesse();
 
                 $tk->setIdKermesse($r->id_kermesse);
-                $tk->setIdParroquia($r->id_parroquia);
+                $tk->setIdParroquia($r->idParroquia);
                 $tk->setNombre($r->nombre);
                 $tk->setfInicio($r->fInicio);
                 $tk->setfFinal($r->fFinal);
@@ -44,7 +44,7 @@ class dt_tbl_kermesse extends Conexion
         $date = date('Y-m-d H:i:s');
 
         try {
-            $sql = "INSERT INTO tbl_kermesse (id_parroquia, nombre, fInicio, fFinal, descripcion, estado, 
+            $sql = "INSERT INTO tbl_kermesse (idParroquia, nombre, fInicio, fFinal, descripcion, estado, 
                           usuario_creacion, fecha_creacion) VALUES (?,?,?,?,?,1,1,?)";
             $query = $this->conectar()->prepare($sql)->execute(array(
                 $tk->getIdParroquia(),
@@ -95,11 +95,10 @@ class dt_tbl_kermesse extends Conexion
         $date = date('Y-m-d H:i:s');
 
         try {
-            $sql = $sql = "UPDATE tbl_kermesse SET idParroquia = ?, nombre = ?, fInicio = ?,  fFinal = ?, descripcion = ?, estado = 2, usuario_modificacion = 1, fecha_modificacion = ? WHERE id_kermesse = ?";
+            $sql = $sql = "UPDATE tbl_kermesse SET nombre = ?, fInicio = ?,  fFinal = ?, descripcion = ?, estado = 2, usuario_modificacion = 1, fecha_modificacion = ? WHERE id_kermesse = ?";
             $query = $this->conectar()->prepare($sql);
 
             $query->execute(array(
-                $tk->getIdParroquia(),
                 $tk->getNombre(),
                 $tk->getfInicio(),
                 $tk->getfFinal(),
