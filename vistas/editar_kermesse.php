@@ -103,7 +103,6 @@ include("shared/navbar.php");
                     <div class="row mb-3">
                         <input type="hidden" value="<?php echo $data_kermesse->getIdKermesse(); ?>" name="id_kermesse" />
 
-
                         <!-- Quitar actualizar parroquia de los dttable y controller  -->
                         <label class="col-sm-2 col-form-table">Nombre:</label>
                         <div class="col-sm-10">

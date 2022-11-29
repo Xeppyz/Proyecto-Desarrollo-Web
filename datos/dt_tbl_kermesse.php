@@ -71,18 +71,10 @@ class dt_tbl_kermesse extends Conexion
             $tk = new tbl_kermesse();
 
             $tk->setIdKermesse($r->id_kermesse);
-            $tk->setIdParroquia($r->id_parroquia);
             $tk->setNombre($r->nombre);
             $tk->setfInicio($r->fInicio);
             $tk->setfFinal($r->fFinal);
             $tk->setDescripcion($r->descripcion);
-            $tk->setEstado($r->estado);
-            $tk->setUsuarioCreacion($r->usuario_creacion);
-            $tk->setFechaCreacion($r->fecha_creacion);
-            $tk->setUsuarioModificacion($r->usuario_modificacion);
-            $tk->setFechaModificacion($r->fecha_modificacion);
-            $tk->setUsuarioEliminacion($r->usuario_eliminacion);
-            $tk->setFechaEliminacion($r->fecha_eliminacion);
 
             return $tk;
         } catch (Exception $e) {
@@ -117,11 +109,10 @@ class dt_tbl_kermesse extends Conexion
         $date = date('Y-m-d H:i:s');
 
         try {
-            $sql = "UPDATE tbl_kermesse SET estado = 3, usuario_eliminacion = 1, fecha_eliminacion = ? where id_kermesse = ?";
+            $sql = "UPDATE tbl_kermesse SET estado = 3, usuario_eliminacion = 1, fecha_eliminacion = $date where id_kermesse = ?";
             $query = $this->conectar()->prepare($sql);
 
             $query->execute(array(
-                $date,
                 $id_kermesse
             ));
 
