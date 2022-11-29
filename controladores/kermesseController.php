@@ -43,7 +43,6 @@ class kermesseController
         try
         {
             $id = $_REQUEST['id_kermesse'];
-            $idParroquia = $_REQUEST['id_parroquia'];
             $nombre = $_REQUEST['nombre'];
             $fInicio = $_REQUEST['fInicio'];
             $fFinal = $_REQUEST['fFinal'];
@@ -53,7 +52,6 @@ class kermesseController
             $dtk = new dt_tbl_kermesse();
 
             $tk->setIdKermesse($id);
-            $tk->setIdParroquia($idParroquia);
             $tk->setNombre($nombre);
             $tk->setfInicio($fInicio);
             $tk->setfFinal($fFinal);

@@ -95,11 +95,10 @@ class dt_tbl_kermesse extends Conexion
         $date = date('Y-m-d H:i:s');
 
         try {
-            $sql = $sql = "UPDATE tbl_kermesse SET idParroquia = ?, nombre = ?, fInicio = ?,  fFinal = ?, descripcion = ?, estado = 2, usuario_modificacion = 1, fecha_modificacion = ? WHERE id_kermesse = ?";
+            $sql = $sql = "UPDATE tbl_kermesse SET nombre = ?, fInicio = ?,  fFinal = ?, descripcion = ?, estado = 2, usuario_modificacion = 1, fecha_modificacion = ? WHERE id_kermesse = ?";
             $query = $this->conectar()->prepare($sql);
 
             $query->execute(array(
-                $tk->getIdParroquia(),
                 $tk->getNombre(),
                 $tk->getfInicio(),
                 $tk->getfFinal(),
