@@ -120,7 +120,12 @@ class dt_tbl_kermesse extends Conexion
         {
             $sql = "UPDATE tbl_kermesse SET estado = 3 where id_kermesse = ?";
             $query = $this->conectar()->prepare($sql);
+
+            //  En el update tambien debe ir incluido
+            //  UsuarioEliminacion
+            //  FechaEliminacion, pero hay que poner la fecha de hoy en que se hizo esto xd.
             // https://stackoverflow.com/questions/9541029/insert-current-date-in-datetime-format-mysql
+
             $query->execute(array(
                 $id_kermesse
             ));
