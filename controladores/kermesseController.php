@@ -10,7 +10,7 @@ class kermesseController
     public static function guardarKermesse(){
         try
         {
-            $idParroquia = $_REQUEST['id_parroquia'];
+            $idParroquia = $_REQUEST['idParroquia'];
             $nombre = $_REQUEST['nombre'];
             $fInicio = $_REQUEST['fInicio'];
             $fFinal = $_REQUEST['fFinal'];

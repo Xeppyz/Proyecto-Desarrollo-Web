@@ -4,12 +4,6 @@ require_once '../entidades/tbl_kermesse.php';
 require_once '../datos/dt_tbl_kermesse.php';
 require_once '../controladores/kermesseController.php';
 
-if(isset($_POST['m'])){
-    $metodo = $_POST['m'];
-    if(method_exists("kermesseController", $metodo));
-}else{
-
-}
 
 if(isset($_POST['m'])){
     $metodo = $_POST['m'];
@@ -99,40 +93,48 @@ include("shared/navbar.php");
 
                     <div class="row mb-3">
                         <input type="hidden" value="guardar" name="txtaccion" />
+
+                        <label class="col-sm-2 col-form-table">ID Parroquia:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="idParroquia" />
+                        </div>
+                    </div>
+
+
+                    <div class="row mb-3">
                         <label class="col-sm-2 col-form-table">Nombre:</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="nombre" />
+                            <input type="text" name="nombre" class="form-control" />
                         </div>
                     </div>
+
+
                     <div class="row mb-3">
-                        <label class="col-sm-2 col-form-table">Apellido:</label>
+                        <label class="col-sm-2 col-form-table">Fecha de inicio:</label>
                         <div class="col-sm-10">
-                            <input type="text" name="apellido" class="form-control" />
+                            <input type="date" name="fInicio" class="form-control" />
                         </div>
                     </div>
+
                     <div class="row mb-3">
-                        <label class="col-sm-2 col-form-table">Email:</label>
+                        <label class="col-sm-2 col-form-table">Fecha final:</label>
                         <div class="col-sm-10">
-                            <input type="email" name="email" class="form-control" />
+                            <input type="date" name="fFinal" class="form-control" />
                         </div>
                     </div>
+
                     <div class="row mb-3">
-                        <label class="col-sm-2 col-form-table">Usuario:</label>
+                        <label class="col-sm-2 col-form-table">Descripcion:</label>
                         <div class="col-sm-10">
-                            <input type="text" name="usuario" class="form-control" />
+                            <input type="text" name="descripcion" class="form-control" />
                         </div>
                     </div>
-                    <div class="row mb-3">
-                        <label class="col-sm-2 col-form-table">Contraseña:</label>
-                        <div class="col-sm-10">
-                            <input type="password" name="pwd" class="form-control" />
-                        </div>
-                    </div>
+
                     <div class="row mb-3">
 
                         <div class="col-sm-10">
-                            <button type="submit" class="btn btn-primary">Guardar Usuario</button>
-                            <input type="hidden" name="m" value="guardarUsuario">
+                            <button type="submit" class="btn btn-primary">Guardar Kermesse</button>
+                            <input type="hidden" name="m" value="guardarKermesse">
                         </div>
                     </div>
                 </form>
