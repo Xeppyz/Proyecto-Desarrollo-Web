@@ -38,7 +38,7 @@ class kermesseController
 
     }
 
-    public static function editarUsuario()
+    public static function editarKermesse()
     {
         try
         {
@@ -66,7 +66,7 @@ class kermesseController
             die($e->getMessage());
         }
     }
-    public static function eliminarUsuario()
+    public static function eliminarKermesse()
     {
         try
         {

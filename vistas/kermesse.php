@@ -93,7 +93,7 @@ include("shared/navbar.php");
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Kermesses</h5>
-                        <table class="table usuariosTable">
+                        <table class="table kermessesTable">
                             <thead>
                             <tr>
                                 <th>ID</th>
@@ -167,7 +167,7 @@ include("shared/footer.php");
 <!-- Template Main JS File -->
 <script src="assets/js/main.js"></script>
 <script>
-    let usuarioTable = document.querySelector('.kermessesTable');
+    let kermesseTable = document.querySelector('.kermessesTable');
     let dataTable = new DataTable(".kermessesTable", {
         searchable: true,
         fixedHeight: true
