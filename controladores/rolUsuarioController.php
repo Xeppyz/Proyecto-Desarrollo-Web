@@ -30,7 +30,7 @@ class rolUsuarioController{
             $dtru->asignarRolUsuario($ru);
 
 
-            //header("Location: agregar_rol_usuario.php");
+            header("Refresh:0");
 
         }
         catch (Exception $e) {
